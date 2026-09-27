@@ -23,7 +23,7 @@ The stream is deliberately not a wall of identical cards. Video, audio,
 documents, data, galleries, social captures, articles, and original notes have
 distinct visual signatures, while the first item receives a wider editorial
 treatment. The pattern borrows chapter rhythm from `christinepink`, structured
-link metadata from `jovanipinkv2`, selectable moments from `chess-lab`, and
+link metadata from `jovanipink-site`, selectable moments from `chess-lab`, and
 claim-safety posture from `handoff-navigator`.
 
 ## Reader experiences
@@ -358,12 +358,12 @@ that records actual Canadian quota use without inferring US entry or origin
 fraud.
 The accepted [Inquiry 09 decision](docs/decisions/2026-09-01-notebook-nine.md)
 authorized the atomic Inquiry 06 correction and companion publication, released
-in [PR #48](https://github.com/JovaniPink/Mainland-Dispatch/pull/48). Its
+in [PR #48](https://github.com/JovaniPink/mainland-dispatch/pull/48). Its
 [lossless custody specification](docs/plans/2026-09-01-inquiry-06-09-migration-spec.md)
 continues to define the migration contract.
 The accepted [Inquiry 10 decision](docs/decisions/2026-09-01-notebook-ten.md)
 authorized the atomic Inquiry 04 correction and Arctic companion publication,
-released in [PR #49](https://github.com/JovaniPink/Mainland-Dispatch/pull/49).
+released in [PR #49](https://github.com/JovaniPink/mainland-dispatch/pull/49).
 Its [Arctic custody specification](docs/plans/2026-09-01-inquiry-04-10-migration-spec.md)
 preserves one consent-gated map implementation. These accepted decisions and
 releases supersede the former proposed-state summaries; dated research and

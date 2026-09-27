@@ -6,10 +6,10 @@ Recorded September 7, 2026. These are draft review packages, not a production re
 
 | Package | Draft PR | Validated implementation head | Hosted gate |
 | --- | --- | --- | --- |
-| Correctness, accessibility, dates, media | [58](https://github.com/JovaniPink/Mainland-Dispatch/pull/58) | `964a395` | [Node 22 and 24 passed](https://github.com/JovaniPink/Mainland-Dispatch/actions/runs/34167988990) |
-| Public discovery and Saved | [59](https://github.com/JovaniPink/Mainland-Dispatch/pull/59) | `97a3b14` | [Node 22 and 24 passed](https://github.com/JovaniPink/Mainland-Dispatch/actions/runs/34169557395) |
-| Homepage, reader shell, Inquiry 08 reference | [60](https://github.com/JovaniPink/Mainland-Dispatch/pull/60) | `a09a76a` | [Node 22 and 24 passed](https://github.com/JovaniPink/Mainland-Dispatch/actions/runs/34170177167) |
-| Remaining editorial redesign and acceptance fixes | [61](https://github.com/JovaniPink/Mainland-Dispatch/pull/61) | `5e8f8cd541f68b245bf291210f02b7b9ba5fda7b` | [Node 22 and 24 passed](https://github.com/JovaniPink/Mainland-Dispatch/actions/runs/34172179416) |
+| Correctness, accessibility, dates, media | [58](https://github.com/JovaniPink/mainland-dispatch/pull/58) | `964a395` | [Node 22 and 24 passed](https://github.com/JovaniPink/mainland-dispatch/actions/runs/34167988990) |
+| Public discovery and Saved | [59](https://github.com/JovaniPink/mainland-dispatch/pull/59) | `97a3b14` | [Node 22 and 24 passed](https://github.com/JovaniPink/mainland-dispatch/actions/runs/34169557395) |
+| Homepage, reader shell, Inquiry 08 reference | [60](https://github.com/JovaniPink/mainland-dispatch/pull/60) | `a09a76a` | [Node 22 and 24 passed](https://github.com/JovaniPink/mainland-dispatch/actions/runs/34170177167) |
+| Remaining editorial redesign and acceptance fixes | [61](https://github.com/JovaniPink/mainland-dispatch/pull/61) | `5e8f8cd541f68b245bf291210f02b7b9ba5fda7b` | [Node 22 and 24 passed](https://github.com/JovaniPink/mainland-dispatch/actions/runs/34172179416) |
 
 Every package ran install-script review, both dependency audits, and `test-all`.
 The final code has 70 passing suites and 359 passing tests. Both explicit compiler

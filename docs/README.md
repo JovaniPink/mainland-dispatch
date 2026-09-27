@@ -31,9 +31,9 @@ publication gate. Current authority is explicit:
 | Monitored          | North American origin and transshipment evidence; manual watch #35  |
 
 The accepted September 1 decisions and releases in
-[PR #48](https://github.com/JovaniPink/Mainland-Dispatch/pull/48) and
-[PR #49](https://github.com/JovaniPink/Mainland-Dispatch/pull/49) supersede the
-former proposed-state summaries. [Umbrella issue #32](https://github.com/JovaniPink/Mainland-Dispatch/issues/32)
+[PR #48](https://github.com/JovaniPink/mainland-dispatch/pull/48) and
+[PR #49](https://github.com/JovaniPink/mainland-dispatch/pull/49) supersede the
+former proposed-state summaries. [Umbrella issue #32](https://github.com/JovaniPink/mainland-dispatch/issues/32)
 is closed. The [Safari demo handoff](plans/2026-09-03-demo-readiness.md) records
 presentation verification separately from publication completion.
 
@@ -186,11 +186,11 @@ Issues track execution; the dated decisions above remain the authority.
 The publication program and migration-specification issues below are closed;
 #35 remains an open manual evidence watch, not pending Season Zero implementation.
 
-- [#32 — Ten-Notebook Season Zero umbrella](https://github.com/JovaniPink/Mainland-Dispatch/issues/32)
-- [#33 — Publish Inquiry 08](https://github.com/JovaniPink/Mainland-Dispatch/issues/33)
-- [#34 — Prepare the Inquiry 06 / Inquiry 09 custody migration](https://github.com/JovaniPink/Mainland-Dispatch/issues/34)
-- [#35 — Monitor origin and transshipment evidence](https://github.com/JovaniPink/Mainland-Dispatch/issues/35)
-- [#36 — Prepare the Inquiry 04 / Inquiry 10 custody migration](https://github.com/JovaniPink/Mainland-Dispatch/issues/36)
+- [#32 — Ten-Notebook Season Zero umbrella](https://github.com/JovaniPink/mainland-dispatch/issues/32)
+- [#33 — Publish Inquiry 08](https://github.com/JovaniPink/mainland-dispatch/issues/33)
+- [#34 — Prepare the Inquiry 06 / Inquiry 09 custody migration](https://github.com/JovaniPink/mainland-dispatch/issues/34)
+- [#35 — Monitor origin and transshipment evidence](https://github.com/JovaniPink/mainland-dispatch/issues/35)
+- [#36 — Prepare the Inquiry 04 / Inquiry 10 custody migration](https://github.com/JovaniPink/mainland-dispatch/issues/36)
 
 ## Current article-corpus rollup
 
