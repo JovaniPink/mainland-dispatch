@@ -15,20 +15,33 @@ type NotebookReaderShellProps = {
   title: string;
   subtitle: string;
   thesis: string;
-  publishedAt: string;
-  updatedAt: string;
   presentationUpdatedAt?: string;
   readTime: string;
   tags: string[];
   editorialLabel: string;
-  path: string;
-  campaign: string;
   sections: readonly NotebookSectionLink[];
   readingRule: string;
   readingRuleLabel?: string;
   contentClassName?: string;
   children: ReactNode;
-};
+} & (
+  | {
+      preview: true;
+      draftUpdatedAt: string;
+      publishedAt?: never;
+      updatedAt?: never;
+      path?: never;
+      campaign?: never;
+    }
+  | {
+      preview?: false;
+      draftUpdatedAt?: never;
+      publishedAt: string;
+      updatedAt: string;
+      path: string;
+      campaign: string;
+    }
+);
 
 function SectionList({
   sections,
@@ -85,6 +98,8 @@ export function NotebookReaderShell({
   readingRuleLabel = "Reading rule",
   contentClassName,
   children,
+  preview,
+  draftUpdatedAt,
 }: NotebookReaderShellProps) {
   const [activeId, setActiveId] = useState(sections[0]?.[0] ?? "");
   const [sectionsOpen, setSectionsOpen] = useState(false);
@@ -158,18 +173,24 @@ export function NotebookReaderShell({
             data-testid="notebook-metadata"
             className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs uppercase tracking-widest text-ink-muted"
           >
-            <span>{formatDate(publishedAt)}</span>
+            <span>
+              {preview
+                ? `Draft revised ${formatDate(draftUpdatedAt)}`
+                : formatDate(publishedAt)}
+            </span>
             <span aria-hidden>-</span>
             <span>{readTime}</span>
             <span aria-hidden>-</span>
             <span>{editorialLabel}</span>
-            <Link
-              href="/about"
-              className="text-signal underline underline-offset-4"
-            >
-              Edited by Jovani Pink
-            </Link>
-            {updatedAt !== publishedAt && (
+            {!preview && (
+              <Link
+                href="/about"
+                className="text-signal underline underline-offset-4"
+              >
+                Edited by Jovani Pink
+              </Link>
+            )}
+            {!preview && updatedAt !== publishedAt && (
               <>
                 <span aria-hidden>-</span>
                 <span>Current through {formatDate(updatedAt)}</span>
@@ -193,11 +214,15 @@ export function NotebookReaderShell({
                 </li>
               ))}
             </ul>
-            <SaveButton
-              target={{ kind: "notebook", id: path.split("/").pop()! }}
-              title={title}
-            />
-            <NotebookShare title={title} path={path} campaign={campaign} />
+            {!preview && (
+              <SaveButton
+                target={{ kind: "notebook", id: path.split("/").pop()! }}
+                title={title}
+              />
+            )}
+            {!preview && (
+              <NotebookShare title={title} path={path} campaign={campaign} />
+            )}
           </div>
           <section
             data-testid="working-thesis"
@@ -277,20 +302,22 @@ export function NotebookReaderShell({
           className={cn("min-w-0 w-full justify-self-end", contentClassName)}
         >
           {children}
-          <footer className="mt-10 border-t border-rule pt-5 text-sm leading-6 text-ink-muted">
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={correctionUrl(path, title)}
-              className="text-signal underline underline-offset-4"
-            >
-              Suggest a correction
-            </a>
-            <p>
-              Submissions are public and require GitHub. You review and submit
-              the issue yourself.
-            </p>
-          </footer>
+          {!preview && (
+            <footer className="mt-10 border-t border-rule pt-5 text-sm leading-6 text-ink-muted">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={correctionUrl(path, title)}
+                className="text-signal underline underline-offset-4"
+              >
+                Suggest a correction
+              </a>
+              <p>
+                Submissions are public and require GitHub. You review and submit
+                the issue yourself.
+              </p>
+            </footer>
+          )}
         </div>
       </div>
     </>

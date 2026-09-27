@@ -2,7 +2,7 @@
 
 **Version:** `source-taxonomy-v1`
 **Status:** Implemented, provisional
-**Scope:** The private 526-record source-lead catalog
+**Scope:** The private 609-record source-lead catalog
 **Decision owner:** Mainland Dispatch editor
 **Classification basis:** Existing repository-owned titles, topics, notes, and
 publication dates
@@ -81,30 +81,30 @@ or reinterpret external pages.
 
 ## Current assignment snapshot
 
-All 526 current source leads have a valid `source-taxonomy-v1` object and none
+All 609 current source leads have a valid `source-taxonomy-v1` object and none
 uses the `cross-cutting` fallback.
 
 | Primary theme | Records |
 | --- | ---: |
-| Governance and law | 177 |
-| Technology and digital systems | 109 |
-| Trade and industry | 64 |
+| Governance and law | 187 |
+| Technology and digital systems | 128 |
+| Trade and industry | 77 |
 | Economy and finance | 63 |
-| Security and geopolitics | 48 |
-| Science and health | 20 |
-| Society and culture | 21 |
-| Environment and resources | 15 |
+| Security and geopolitics | 68 |
+| Science and health | 25 |
+| Society and culture | 29 |
+| Environment and resources | 23 |
 | Infrastructure and mobility | 8 |
 | History and memory | 1 |
-| **Total** | **526** |
+| **Total** | **609** |
 
-Geographic scopes are multi-valued, so their counts do not sum to 526. The
-current assignments are: mainland China 498, United States 73, global 33, Hong
-Kong 23, Asia-Pacific 14, Taiwan 8, Europe 7, Canada 5, Latin America 4,
+Geographic scopes are multi-valued, so their counts do not sum to 609. The
+current assignments are: mainland China 581, United States 83, global 37, Hong
+Kong 23, Asia-Pacific 15, Taiwan 11, Europe 7, Canada 8, Latin America 4,
 Africa 1, and Middle East 1. No current record explicitly matches Macau.
 
 The publication-decade split is 4 records from the 2000s, 293 from the 2010s,
-and 229 from the 2020s.
+and 312 from the 2020s.
 
 ## Invariants and review needs
 

@@ -142,10 +142,10 @@ annotated translation of Liang Wenfeng's 2024 interview. Kimi K3 appears in the
 chronology and Dossier only as a sourced July 20 announcement with a July 27
 verification gate; its review-stage Dispatch remains outside public routes.
 
-The wider source-lead catalog currently contains 481 records. The thirteen
-general-China article batches plus the August 14 quality-link intake account for
-404 external candidates: 375 are
-withheld and 29 rejected. None is drafted or public. These figures describe
+The wider source-lead catalog currently contains 609 records. The thirteen
+general-China article batches, the August 14 quality-link intake, the
+September 15 HN past-year intake, and the September 15 Anthropic threat-report
+packet account for 487 external candidates: 458 are withheld and 29 rejected. None is drafted or public. These figures describe
 editorial intake, not the size of the public archive.
 
 The public Archive may report these figures as a validated aggregate snapshot,

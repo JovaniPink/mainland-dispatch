@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import Link from "next/link";
+import { requireEditorialDesk } from "@/lib/editorial-desk";
 import { Composer } from "@/components/desk/composer";
 import { NotebookFiveAudioAudit } from "@/components/desk/notebook-five-audio-audit";
 import { ReviewQueue } from "@/components/desk/review-queue";
@@ -13,12 +14,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, noarchive: true },
 };
 
-const deskEnabled =
-  process.env.NODE_ENV !== "production" ||
-  process.env.ENABLE_EDITORIAL_DESK === "1";
-
 export default function DeskPage() {
-  if (!deskEnabled) notFound();
+  requireEditorialDesk();
 
   // The private catalog is read here, on the server, and reaches the Desk's
   // client components only as props of this gated page.
@@ -52,6 +49,24 @@ export default function DeskPage() {
       </header>
 
       <div className="mt-8 space-y-6">
+        <section className="border border-rule bg-paper-warm/30 p-5">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
+            Inquiry 11 · Draft for review
+          </p>
+          <h2 className="mt-2 font-serif text-2xl">
+            <Link
+              href="/desk/notebooks/who-controls-the-model"
+              className="text-signal underline underline-offset-4"
+            >
+              Who Controls the Model?
+            </Link>
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-ink-muted">
+            Model access, rerouted requests, and the limits of Anthropic’s
+            account of China-linked misuse. Full draft and source audit;
+            publication pending editorial review.
+          </p>
+        </section>
         <NotebookFiveAudioAudit />
         <Composer knownSources={knownSources} />
         <SourceLeadInbox sourceLeads={sourceLeads} />

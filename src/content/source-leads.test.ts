@@ -2,7 +2,7 @@ import { sourceLeads, SourceLeadCatalogSchema } from "./source-leads";
 
 describe("editorial article-candidate catalog", () => {
   it("holds a chronological article-source inbox", () => {
-    expect(sourceLeads).toHaveLength(526);
+    expect(sourceLeads).toHaveLength(609);
     const datedYears = sourceLeads
       .map((lead) =>
         String(lead.publicationYear ?? lead.publishedAt?.slice(0, 4))
@@ -16,7 +16,7 @@ describe("editorial article-candidate catalog", () => {
   it("assigns versioned provisional taxonomy metadata to every source lead", () => {
     const taxonomies = sourceLeads.map((lead) => Reflect.get(lead, "taxonomy"));
 
-    expect(taxonomies).toHaveLength(526);
+    expect(taxonomies).toHaveLength(609);
     expect(
       taxonomies.every(
         (taxonomy) =>
@@ -137,6 +137,44 @@ describe("editorial article-candidate catalog", () => {
     ).toBe(true);
   });
 
+  it("keeps the Anthropic China threat-report packet private and attributed", () => {
+    const corpus = sourceLeads.filter(
+      (lead) => lead.collectionId === "anthropic-china-threat-report-2026-09-15"
+    );
+    const ids = corpus.map((lead) => lead.id);
+    const urls = corpus.map((lead) => lead.url);
+
+    expect(corpus).toHaveLength(5);
+    expect(new Set(ids).size).toBe(5);
+    expect(new Set(urls).size).toBe(5);
+    expect(
+      corpus.every(
+        (lead) =>
+          lead.reviewState === "metadata-checked" &&
+          lead.disposition === "withheld" &&
+          lead.evidenceStatus === "unverified" &&
+          lead.urlStatus === "publisher-canonical" &&
+          lead.canonicalCheckedAt === "2026-09-15" &&
+          lead.accessedAt === "2026-09-15" &&
+          lead.nextReviewAt === "2026-09-22" &&
+          lead.url.startsWith("https://") &&
+          Boolean(lead.decisionReason) &&
+          !lead.dispatchId
+      )
+    ).toBe(true);
+    expect(
+      corpus.find(
+        (lead) => lead.id === "lead-2026-anthropic-september-threat-report"
+      )?.notes
+    ).toContain("Anthropic's claim");
+    expect(
+      corpus.find(
+        (lead) =>
+          lead.id === "lead-2026-hudson-china-insider-anthropic-threat-report"
+      )?.notes
+    ).toContain("complete audio audit");
+  });
+
   it("accounts for the bounded 20-link HN discovery batch without publishing it", () => {
     const corpus = sourceLeads.filter(
       (lead) => lead.collectionId === "china-quality-links-2026-08-14"
@@ -150,6 +188,54 @@ describe("editorial article-candidate catalog", () => {
     expect(corpus.every((lead) => !lead.url.includes("ycombinator.com"))).toBe(
       true
     );
+  });
+
+  it("accounts for the past-year HN discovery intake without publishing it", () => {
+    const corpus = sourceLeads.filter(
+      (lead) => lead.collectionId === "china-hn-past-year-2026-09-15"
+    );
+    const ids = corpus.map((lead) => lead.id);
+    const urls = corpus.map((lead) => lead.url);
+
+    expect(corpus).toHaveLength(78);
+    expect(new Set(ids).size).toBe(78);
+    expect(new Set(urls).size).toBe(78);
+    expect(
+      corpus.every(
+        (lead) =>
+          lead.reviewState === "metadata-checked" &&
+          lead.disposition === "withheld" &&
+          lead.evidenceStatus === "unverified" &&
+          lead.accessedAt === "2026-09-15" &&
+          lead.url.startsWith("https://") &&
+          Boolean(lead.decisionReason) &&
+          !lead.dispatchId
+      )
+    ).toBe(true);
+    expect(corpus.every((lead) => !lead.url.includes("ycombinator.com"))).toBe(
+      true
+    );
+    expect(
+      corpus.filter((lead) => lead.urlStatus === "redirect-resolved")
+    ).toHaveLength(3);
+    expect(
+      corpus.filter((lead) => lead.accessStatus === "reachable")
+    ).toHaveLength(47);
+    expect(
+      corpus.filter((lead) => lead.accessStatus === "paywalled")
+    ).toHaveLength(12);
+    expect(
+      corpus.filter((lead) => lead.accessStatus === "restricted")
+    ).toHaveLength(18);
+    expect(
+      corpus.filter((lead) => lead.accessStatus === "unstable")
+    ).toHaveLength(1);
+    expect(
+      corpus.every((lead) =>
+        lead.topics.some((topic) => topic.startsWith("story-cluster:"))
+      )
+    ).toBe(true);
+    expect(corpus.every((lead) => !lead.url.includes("koi.ai"))).toBe(true);
   });
 
   it("accounts for the thirteenth 30-article batch without publishing it", () => {

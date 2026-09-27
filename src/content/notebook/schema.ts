@@ -82,7 +82,7 @@ const NotebookSourceLinkSchema = z.object({
   url: cleanHttpsUrl,
 });
 
-const NotebookTrailItemSchema = z.object({
+export const NotebookTrailItemSchema = z.object({
   id: sourceId,
   role: nonEmpty,
   title: nonEmpty,
@@ -102,7 +102,7 @@ const NotebookTimelineItemSchema = z.object({
   explanation: nonEmpty,
 });
 
-const NotebookClaimAuditSchema = z.object({
+export const NotebookClaimAuditSchema = z.object({
   id: nonEmpty.regex(/^audit-[a-z0-9]+(?:-[a-z0-9]+)*$/),
   claim: nonEmpty,
   status: EvidenceStatusSchema,
