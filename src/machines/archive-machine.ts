@@ -6,6 +6,9 @@ export type ArchiveFilterKey =
   "vertical" | "kind" | "evidence" | "publisher" | "place" | "year" | "query";
 
 export type ArchiveContext = {
+  resultType: "all" | "inquiry" | "source" | "dispatch";
+  relationshipMode: "inquiry" | "dispatch";
+  defaultInquirySlug: string;
   view: ArchiveView;
   vertical: Vertical | "all";
   kind: DispatchKind | "all";
@@ -21,6 +24,11 @@ export type ArchiveContext = {
 
 export type ArchiveEvent =
   | { type: "SET_VIEW"; view: ArchiveView }
+  | { type: "SET_RESULT_TYPE"; resultType: ArchiveContext["resultType"] }
+  | {
+      type: "SET_RELATIONSHIP_MODE";
+      relationshipMode: ArchiveContext["relationshipMode"];
+    }
   | { type: "FILTER_VERTICAL"; vertical: Vertical | "all" }
   | { type: "FILTER_KIND"; kind: DispatchKind | "all" }
   | { type: "FILTER_EVIDENCE"; evidence: EvidenceStatus | "all" }
@@ -41,7 +49,10 @@ export type ArchiveEvent =
       filters: Partial<Omit<ArchiveContext, "filterPanelOpen">>;
     };
 
-const initialContext: ArchiveContext = {
+export const initialArchiveContext: ArchiveContext = {
+  resultType: "all",
+  relationshipMode: "inquiry",
+  defaultInquirySlug: "",
   view: "cards",
   vertical: "all",
   kind: "all",
@@ -51,7 +62,7 @@ const initialContext: ArchiveContext = {
   year: "all",
   query: "",
   focusId: "",
-  inquirySlug: "dominance-is-a-dashboard",
+  inquirySlug: "",
   filterPanelOpen: false,
 };
 
@@ -68,15 +79,28 @@ const archiveFilterDefaults: Pick<ArchiveContext, ArchiveFilterKey> = {
 export const archiveMachine = setup({
   types: {
     context: {} as ArchiveContext,
+    input: {} as { latestInquirySlug: string } | undefined,
     events: {} as ArchiveEvent,
   },
 }).createMachine({
   id: "archive",
   initial: "ready",
-  context: initialContext,
+  context: ({ input }) => ({
+    ...initialArchiveContext,
+    inquirySlug: input?.latestInquirySlug ?? "",
+    defaultInquirySlug: input?.latestInquirySlug ?? "",
+  }),
   states: {
     ready: {
       on: {
+        SET_RESULT_TYPE: {
+          actions: assign({ resultType: ({ event }) => event.resultType }),
+        },
+        SET_RELATIONSHIP_MODE: {
+          actions: assign({
+            relationshipMode: ({ event }) => event.relationshipMode,
+          }),
+        },
         SET_VIEW: {
           actions: assign({ view: ({ event }) => event.view }),
         },
@@ -128,6 +152,7 @@ export const archiveMachine = setup({
           actions: assign(({ context }) => ({
             ...context,
             ...archiveFilterDefaults,
+            resultType: "all" as const,
           })),
         },
         HYDRATE: {
@@ -137,7 +162,11 @@ export const archiveMachine = setup({
           })),
         },
         RESET: {
-          actions: assign(initialContext),
+          actions: assign(({ context }) => ({
+            ...initialArchiveContext,
+            defaultInquirySlug: context.defaultInquirySlug,
+            inquirySlug: context.defaultInquirySlug,
+          })),
         },
       },
     },

@@ -17,11 +17,11 @@ export const routingAroundRisk = parseMaritimeRiskNotebookEntry({
   slug: "routing-around-risk",
   title: "Routing Around Risk",
   subtitle:
-    "China's response to the Hormuz and Red Sea crisis is a portfolio of inventories, pipelines, tanker handoffs, selective passage, and supplier relationships. Every workaround relocates risk rather than removing it.",
+    "Inventories, pipelines, tanker handoffs, and supplier relationships help China manage disrupted maritime routes. Which risks does each workaround reduce, and where does the exposure move?",
   description:
     "A source-audited field guide to China's non-Arctic chokepoint portfolio: oil inventories, bypass pipelines, tanker handoffs, Red Sea exposure, sanctions, and the limits of substitution.",
   thesis:
-    "China is not escaping maritime chokepoints. It is distributing exposure across estimated oil inventories, pipeline capacity, offshore cargo handoffs, state-linked shipping, supplier diversity, and selective passage. Those measures buy time and relocate risk; none replaces the energy function of Hormuz or the container scale of Suez.",
+    "China distributes maritime exposure across estimated oil inventories, pipeline capacity, offshore cargo handoffs, state-linked shipping, supplier diversity, and selective passage. These measures can buy time and move risk between routes and institutions. They do not replace the energy function of Hormuz or the container scale of Suez.",
   frontPagePreview: {
     finding:
       "China's deepest near-term buffer is estimated crude inventory on land; pipelines, tanker handoffs, passage arrangements, and supplier diversity relocate narrower parts of the exposure.",
@@ -33,6 +33,7 @@ export const routingAroundRisk = parseMaritimeRiskNotebookEntry({
       "notebook-source-risk-unctad-suez",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-08-18",
   updatedAt: "2026-09-01",
   readTime: "20 min",
@@ -72,8 +73,8 @@ export const routingAroundRisk = parseMaritimeRiskNotebookEntry({
     ],
     changed: [
       "September 1 correction: the Northern Sea Route evidence moved to Inquiry 10, The Arctic Is Not a Shortcut, with its route, points, scale measures, chronology, source identities, and limitations preserved.",
-      "Inquiry 04 now uses a non-Arctic portfolio contract for Hormuz, the Gulf of Oman, Saudi and Emirati bypass pipelines, Bab el-Mandeb, and Suez. The map implementation and privacy boundary are shared, but this page exposes only portfolio, Gulf, and Red Sea lenses.",
-      "The correction preserves the original URL and publication date. Old Arctic and moved-source fragments remain as accessible notices that point to the exact companion fragments without redirecting the article or duplicating its citations.",
+      "Inquiry 04 now focuses on Hormuz, the Gulf of Oman, Saudi and Emirati bypass pipelines, Bab el-Mandeb, and Suez. Its map covers the Gulf and Red Sea workarounds; the Arctic route has its own inquiry. Both maps load only after consent.",
+      "The original article URL and publication date are unchanged. Earlier links to Arctic material and its sources still lead readers to the corresponding passage in the companion inquiry.",
     ],
   },
   sourceTrail: nonArcticSources,

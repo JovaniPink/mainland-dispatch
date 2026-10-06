@@ -23,7 +23,7 @@ The stream is deliberately not a wall of identical cards. Video, audio,
 documents, data, galleries, social captures, articles, and original notes have
 distinct visual signatures, while the first item receives a wider editorial
 treatment. The pattern borrows chapter rhythm from `christinepink`, structured
-link metadata from `jovanipinkv2`, selectable moments from `chess-lab`, and
+link metadata from `jovanipink-site`, selectable moments from `chess-lab`, and
 claim-safety posture from `handoff-navigator`.
 
 ## Reader experiences
@@ -57,7 +57,9 @@ claim-safety posture from `handoff-navigator`.
 - **Desk** — a local editorial sandbox with link intake, live Zod feedback, and
   an evidence-focused review queue. It is absent from public navigation and
   returns 404 in production unless `ENABLE_EDITORIAL_DESK=1` is explicitly set
-  at build time. It is not an authenticated CMS.
+  at build time. It is not an authenticated CMS. The Desk reads the source-lead
+  catalog on the server and passes it to its client components as props; the
+  catalog modules are `server-only`.
 
 ## Publication and evidence boundaries
 
@@ -143,8 +145,10 @@ corepack npm run test-all
 
 It rejects high-severity advisories in both the deployed and complete dependency
 graphs, then runs formatting, ESLint, the fail-closed compiler contract, strict
-checks with TypeScript 7 and TypeScript 6, Jest/Testing Library coverage, and a
-production build. The same gates run on Node 22 and Node 24 in GitHub Actions.
+checks with TypeScript 7 and TypeScript 6, Jest/Testing Library coverage, a
+production build, and a public-boundary audit that fails if any source-lead ID
+or serialized source-lead field reaches a client chunk or prerendered public
+document. The same gates run on Node 22 and Node 24 in GitHub Actions.
 Individual commands remain available for formatting
 (`corepack npm run format:check`), lint (`corepack npm run lint`), baseline
 validation (`corepack npm run baseline:check`), compiler validation
@@ -225,7 +229,9 @@ not authorize recurring scraping, public promotion or a second intake system.
 The August 30 ten-Notebook program supersedes only the original three-entry
 ceiling; it preserves the recurring time discipline and every evidence,
 privacy, and publication gate. The Archive still visualizes only the reviewed
-public boundary. The governing decisions are recorded in
+public boundary. Inquiries 01–10 are now public; Inquiries 04 and 06 are corrected
+predecessors with published companions 10 and 09. These ten Notebooks are
+distinct from the 13 public Dispatch records. The governing decisions are recorded in
 [`docs/decisions/2026-07-23-season-zero.md`](docs/decisions/2026-07-23-season-zero.md),
 [`docs/decisions/2026-07-28-notebook-two.md`](docs/decisions/2026-07-28-notebook-two.md),
 [`docs/decisions/2026-08-14-notebook-three.md`](docs/decisions/2026-08-14-notebook-three.md),
@@ -234,6 +240,8 @@ public boundary. The governing decisions are recorded in
 [`docs/decisions/2026-08-25-notebook-six.md`](docs/decisions/2026-08-25-notebook-six.md),
 [`docs/decisions/2026-08-29-notebook-seven.md`](docs/decisions/2026-08-29-notebook-seven.md),
 [`docs/decisions/2026-08-30-notebook-eight.md`](docs/decisions/2026-08-30-notebook-eight.md),
+[`docs/decisions/2026-09-01-notebook-nine.md`](docs/decisions/2026-09-01-notebook-nine.md),
+[`docs/decisions/2026-09-01-notebook-ten.md`](docs/decisions/2026-09-01-notebook-ten.md),
 [`docs/source-notes/2026-09-01-below-half-is-not-gone-publication-refresh.md`](docs/source-notes/2026-09-01-below-half-is-not-gone-publication-refresh.md),
 [`docs/decisions/2026-08-30-ten-notebook-program.md`](docs/decisions/2026-08-30-ten-notebook-program.md),
 and
@@ -241,9 +249,18 @@ and
 
 The current documentation map, governing-methodology precedence, and catalog
 rollup are maintained in [`docs/README.md`](docs/README.md). The source-lead
-catalog contains 481 records. The thirteen general-China intake batches plus the
+catalog contains 510 records. The thirteen general-China intake batches plus the
 August 14 quality-link intake cover 404 external article candidates: 375
-withheld, 29 rejected, and none drafted or public.
+withheld, 29 rejected, and none drafted or public. A separate September 6
+critical-minerals intake contributes 29 withheld research leads. Every catalog
+record carries the versioned, provisional theme, geography, and chronology
+metadata defined in
+[`docs/source-link-taxonomy.md`](docs/source-link-taxonomy.md); taxonomy never
+changes evidence or publication status.
+
+The dated [Safari demo handoff](docs/plans/2026-09-03-demo-readiness.md) separates
+the released product from presentation verification, fallback evidence, and
+remaining approval gates.
 
 Topic-specific intake logs record source quality, exclusions, open checks, and
 the exact research stopping point. They are dated snapshots, so earlier totals
@@ -325,7 +342,7 @@ Notebook Three’s NPR audio boundary, 23 source stops, indicator methods,
 excluded composite-ranking claims, demographic derivation, and exact August 14
 stopping point are recorded in
 [`docs/source-notes/2026-08-14-dominance-is-a-dashboard-ledger.md`](docs/source-notes/2026-08-14-dominance-is-a-dashboard-ledger.md).
-Notebook Four’s maritime-route model, 24 public source stops, 12 claim
+Notebook Four’s original maritime-route model, 24 public source stops, 12 claim
 dispositions, Reuters attribution boundary, schematic-map limitation, and exact
 August 18 stopping point are recorded in
 [`docs/source-notes/2026-08-18-strategic-rebalancing-research-ledger.md`](docs/source-notes/2026-08-18-strategic-rebalancing-research-ledger.md).
@@ -339,13 +356,18 @@ The manual watch has a dated
 [`September 1 EV quota result`](docs/source-notes/2026-09-01-canada-ev-quota-watch.md)
 that records actual Canadian quota use without inferring US entry or origin
 fraud.
-The proposed Inquiry 06 / Inquiry 09 split has a decision-complete
-[`lossless custody migration specification`](docs/plans/2026-09-01-inquiry-06-09-migration-spec.md),
-but no correction or companion publication is authorized.
-The proposed Inquiry 04 / Inquiry 10 split has a separate
-[`lossless Arctic custody specification`](docs/plans/2026-09-01-inquiry-04-10-migration-spec.md)
-that preserves one consent-gated map implementation and keeps Inquiry 10 out of
-every public surface until separately authorized.
+The accepted [Inquiry 09 decision](docs/decisions/2026-09-01-notebook-nine.md)
+authorized the atomic Inquiry 06 correction and companion publication, released
+in [PR #48](https://github.com/JovaniPink/mainland-dispatch/pull/48). Its
+[lossless custody specification](docs/plans/2026-09-01-inquiry-06-09-migration-spec.md)
+continues to define the migration contract.
+The accepted [Inquiry 10 decision](docs/decisions/2026-09-01-notebook-ten.md)
+authorized the atomic Inquiry 04 correction and Arctic companion publication,
+released in [PR #49](https://github.com/JovaniPink/mainland-dispatch/pull/49).
+Its [Arctic custody specification](docs/plans/2026-09-01-inquiry-04-10-migration-spec.md)
+preserves one consent-gated map implementation. These accepted decisions and
+releases supersede the former proposed-state summaries; dated research and
+custody records remain historical authority, not an unfinished publication queue.
 Notebook Seven was selected from the immutable
 [`August 27 candidate ledger`](docs/source-notes/2026-08-27-china-news-candidate-ledger.md)
 under its

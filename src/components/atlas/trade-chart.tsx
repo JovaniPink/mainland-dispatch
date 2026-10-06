@@ -210,7 +210,7 @@ export function TradeChart({
         <div className="mt-3 max-h-80 overflow-auto">
           <table className="w-full border-collapse text-left text-sm">
             <thead className="sticky top-0 bg-paper">
-              <tr className="border-b border-rule font-mono text-[0.65rem] uppercase tracking-widest text-ink-muted">
+              <tr className="border-b border-rule font-mono text-xs uppercase tracking-widest text-ink-muted">
                 <th className="py-2 pr-3">Month</th>
                 <th className="py-2 pr-3">Value</th>
                 <th className="py-2">YoY</th>

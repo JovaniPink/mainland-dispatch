@@ -2,6 +2,11 @@ import { createActor } from "xstate";
 import { intakeMachine } from "./intake-machine";
 import { dispatches } from "@/content/dispatches";
 
+const knownSources = dispatches.map((d) => ({
+  id: d.id,
+  url: d.canonicalSource.url,
+}));
+
 const validDraft = {
   kind: "article",
   id: "d-new",
@@ -49,14 +54,18 @@ const validDraft = {
 
 describe("intakeMachine", () => {
   it("routes a valid, non-duplicate draft to editing", () => {
-    const actor = createActor(intakeMachine).start();
+    const actor = createActor(intakeMachine, {
+      input: { knownSources },
+    }).start();
     actor.send({ type: "SUBMIT_URL", url: "https://example.com/new-story" });
     actor.send({ type: "RESOLVED", draft: validDraft });
     expect(actor.getSnapshot().value).toBe("editing");
   });
 
   it("routes an invalid draft to invalid with recorded issues", () => {
-    const actor = createActor(intakeMachine).start();
+    const actor = createActor(intakeMachine, {
+      input: { knownSources },
+    }).start();
     actor.send({ type: "SUBMIT_URL", url: "https://example.com/x" });
     actor.send({
       type: "RESOLVED",
@@ -72,7 +81,9 @@ describe("intakeMachine", () => {
 
   it("flags a draft whose sourceUrl matches an existing dispatch", () => {
     const existing = dispatches[0];
-    const actor = createActor(intakeMachine).start();
+    const actor = createActor(intakeMachine, {
+      input: { knownSources },
+    }).start();
     actor.send({ type: "SUBMIT_URL", url: existing.canonicalSource.url });
     actor.send({
       type: "RESOLVED",
@@ -90,14 +101,18 @@ describe("intakeMachine", () => {
   });
 
   it("falls back to manualEntry when resolution fails", () => {
-    const actor = createActor(intakeMachine).start();
+    const actor = createActor(intakeMachine, {
+      input: { knownSources },
+    }).start();
     actor.send({ type: "SUBMIT_URL", url: "garbage" });
     actor.send({ type: "RESOLVE_FAILED" });
     expect(actor.getSnapshot().value).toBe("manualEntry");
   });
 
   it("refuses to save an invalid edit and saves a valid one as JSON", () => {
-    const actor = createActor(intakeMachine).start();
+    const actor = createActor(intakeMachine, {
+      input: { knownSources },
+    }).start();
     actor.send({ type: "SUBMIT_URL", url: "https://example.com/new-story" });
     actor.send({ type: "RESOLVED", draft: validDraft });
     actor.send({ type: "EDIT", draft: { ...validDraft, title: "" } });

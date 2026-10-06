@@ -233,14 +233,14 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                     : "border-rule bg-paper-warm/25 hover:bg-paper-warm/60"
                 }`}
               >
-                <span className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+                <span className="font-mono text-xs uppercase tracking-widest text-jade">
                   {item.eyebrow}
                 </span>
                 <span className="mt-2 block font-serif text-lg leading-snug">
                   {item.title}
                 </span>
                 <span
-                  className={`mt-3 inline-block border px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest ${statusTone[item.evidenceStatus]}`}
+                  className={`mt-3 inline-block border px-2 py-0.5 font-mono text-xs uppercase tracking-widest ${statusTone[item.evidenceStatus]}`}
                 >
                   {evidenceStatusLabels[item.evidenceStatus]}
                 </span>
@@ -280,13 +280,13 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                   <span
                     className={`absolute top-3 left-3 z-10 grid h-8 w-8 place-items-center rounded-full border font-mono text-xs md:left-4 ${
                       active
-                        ? "border-signal bg-signal text-paper"
+                        ? "border-signal bg-signal-fill text-[#f3f0e8]"
                         : "border-jade bg-paper text-jade"
                     }`}
                   >
                     {index + 1}
                   </span>
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {item.code}
                   </span>
                   <span className="mt-2 block font-serif text-lg leading-snug">
@@ -295,13 +295,13 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                   <span className="mt-2 block text-sm leading-relaxed text-ink-muted">
                     {item.detail}
                   </span>
-                  <span className="mt-4 block font-mono text-[0.58rem] uppercase leading-relaxed tracking-widest text-ink-muted">
+                  <span className="mt-4 block font-mono text-xs uppercase leading-relaxed tracking-widest text-ink-muted">
                     {item.date ? `${formatDate(item.date)} · ` : ""}
                     {itemScope.sourceIds.length} source
                     {itemScope.sourceIds.length === 1 ? "" : "s"}
                   </span>
                   <span
-                    className={`mt-2 inline-block border px-2 py-0.5 font-mono text-[0.56rem] uppercase tracking-widest ${statusTone[item.evidenceStatus]}`}
+                    className={`mt-2 inline-block border px-2 py-0.5 font-mono text-xs uppercase tracking-widest ${statusTone[item.evidenceStatus]}`}
                   >
                     {evidenceStatusLabels[item.evidenceStatus]}
                   </span>
@@ -337,7 +337,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                     key={event.id}
                     className="border-l-2 border-jade pl-4"
                   >
-                    <p className="font-mono text-[0.62rem] uppercase tracking-widest text-ink-muted">
+                    <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                       {formatDate(event.date)} ·{" "}
                       {evidenceStatusLabels[event.evidenceStatus]}
                     </p>
@@ -351,13 +351,13 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
             )}
           </div>
           <aside className="bg-paper-warm/35 p-5">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+            <p className="font-mono text-xs uppercase tracking-widest text-jade">
               What the chain supports
             </p>
             <p className="mt-2 font-serif text-lg leading-relaxed">
               {chain.conclusion}
             </p>
-            <p className="mt-5 font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+            <p className="mt-5 font-mono text-xs uppercase tracking-widest text-signal">
               What it does not prove
             </p>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
@@ -381,7 +381,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
             {scope.places[0].role}
           </p>
-          <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+          <p className="mt-3 font-mono text-xs uppercase tracking-widest text-ink-muted">
             {scope.places[0].precision} precision · no geographic relation
             asserted
           </p>
@@ -496,7 +496,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
           </div>
           <div className="mt-5 grid gap-4 border-y border-rule py-4 sm:grid-cols-[1fr_auto]">
             <div>
-              <p className="font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+              <p className="font-mono text-xs uppercase tracking-widest text-signal">
                 Interpretation boundary
               </p>
               <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-muted">
@@ -541,7 +541,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                 <span className="font-serif text-lg group-open:text-signal">
                   {source.label}
                 </span>
-                <span className="mt-1 block font-mono text-[0.65rem] uppercase tracking-widest text-ink-muted sm:mt-0">
+                <span className="mt-1 block font-mono text-xs uppercase tracking-widest text-ink-muted sm:mt-0">
                   {source.evidenceRole} · {source.sourceClass} ·{" "}
                   {source.publisher}
                 </span>
@@ -549,7 +549,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
               <div className="mt-4 grid gap-4 border-l-2 border-jade pl-4 text-sm sm:grid-cols-[1fr_1.25fr]">
                 <dl className="space-y-2">
                   <div>
-                    <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                    <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                       Published
                     </dt>
                     <dd>
@@ -559,7 +559,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                     </dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                    <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                       Retrieved · vintage
                     </dt>
                     <dd>
@@ -567,7 +567,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                     </dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                    <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                       Record
                     </dt>
                     <dd className="break-all font-mono text-xs">
@@ -576,7 +576,7 @@ export function AtlasExplorer({ release }: { release: AtlasRelease }) {
                   </div>
                   {source.artifact && (
                     <div>
-                      <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                      <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                         Local artifact · SHA-256
                       </dt>
                       <dd className="break-all font-mono text-xs">

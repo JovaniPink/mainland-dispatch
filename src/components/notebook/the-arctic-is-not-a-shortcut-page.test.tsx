@@ -27,8 +27,8 @@ describe("The Arctic Is Not a Shortcut Notebook page", () => {
     render(<TheArcticIsNotAShortcutPage />);
 
     expect(
-      screen.getByRole("button", { name: "Arctic hedge" })
-    ).toBeInTheDocument();
+      screen.queryByRole("button", { name: "Arctic hedge" })
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Portfolio" })
     ).not.toBeInTheDocument();

@@ -22,8 +22,9 @@ export default function ArchivePage() {
         </p>
         <h1 className="mt-3 font-serif text-3xl sm:text-5xl">Source Archive</h1>
         <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted">
-          Search and filter the published records Mainland Dispatch has
-          reviewed, classified, and connected to explicit source limitations.
+          Search public inquiries, admitted sources, and Dispatches. Follow each
+          source back to the publication that uses it, with its context and
+          limitations.
         </p>
       </header>
 

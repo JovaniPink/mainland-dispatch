@@ -225,7 +225,11 @@ export default async function DispatchPage({
           </p>
           <ul className="mt-3 space-y-3">
             {evidenceSources.map((source) => (
-              <li key={source.id} className="border-l-2 border-rule pl-3">
+              <li
+                key={source.id}
+                id={source.id}
+                className="scroll-mt-32 border-l-2 border-rule pl-3"
+              >
                 <p className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
                   {source.roleLabel}
                 </p>
@@ -273,7 +277,7 @@ export default async function DispatchPage({
           href={d.canonicalSource.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="border border-ink bg-ink px-4 py-2 font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
+          className="border border-ink bg-ink px-4 py-2 font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal-fill hover:text-[#f3f0e8]"
         >
           Open source ↗
         </a>

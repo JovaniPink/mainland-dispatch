@@ -71,7 +71,7 @@ export function NotebookShare({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
-        className="border border-rule px-3 py-2 font-mono text-[0.65rem] uppercase tracking-widest hover:border-signal"
+        className="border border-rule px-3 py-2 font-mono text-xs uppercase tracking-widest hover:border-signal"
       >
         Share
       </button>
@@ -83,7 +83,7 @@ export function NotebookShare({
           <button
             type="button"
             onClick={copyLink}
-            className="border border-rule px-3 py-2 font-mono text-[0.65rem] uppercase tracking-widest hover:border-signal"
+            className="border border-rule px-3 py-2 font-mono text-xs uppercase tracking-widest hover:border-signal"
           >
             {copied ? "Copied" : "Copy link"}
           </button>
@@ -95,7 +95,7 @@ export function NotebookShare({
                 href={shareActionUrl({ channel, url, title })}
                 target={channel === "email" ? undefined : "_blank"}
                 rel={channel === "email" ? undefined : "noreferrer"}
-                className="border border-rule px-3 py-2 font-mono text-[0.65rem] uppercase tracking-widest hover:border-signal"
+                className="border border-rule px-3 py-2 font-mono text-xs uppercase tracking-widest hover:border-signal"
               >
                 {channel}
               </a>

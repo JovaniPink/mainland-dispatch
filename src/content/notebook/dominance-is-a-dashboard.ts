@@ -12,7 +12,7 @@ export const dominanceIsADashboard = parseNotebookEntry({
   slug: "dominance-is-a-dashboard",
   title: "Dominance Is a Dashboard, Not a Crown",
   subtitle:
-    "China has passed the United States in industrial scale and several strategic supply chains. That is not the same thing as inheriting one all-purpose title of global dominance.",
+    "China leads in industrial scale and several strategic supply chains. How do those advantages compare with American financial, military, and technological strengths?",
   description:
     "A source-audited field guide to the dimensions of US–China power: manufacturing, technology, science, finance, military capacity, history, and demography.",
   thesis:
@@ -28,6 +28,7 @@ export const dominanceIsADashboard = parseNotebookEntry({
       "notebook-source-stanford-ai-2026",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-08-14",
   updatedAt: "2026-08-14",
   readTime: "24 min",

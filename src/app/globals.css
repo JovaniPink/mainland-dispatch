@@ -8,7 +8,9 @@
   --ink: #191b18;
   --ink-muted: #62655f;
   --rule: #d6d0c4;
-  --signal: #bd382d;
+  --signal: #a72b22;
+  --signal-fill: #bd382d;
+  --focus: #a72b22;
   --signal-soft: #f2d9d4;
   --jade: #486e64;
   --jade-soft: #dbe6e1;
@@ -21,7 +23,9 @@
   --ink: #e9e6db;
   --ink-muted: #96a09a;
   --rule: #33403a;
-  --signal: #d4574b;
+  --signal: #f19589;
+  --signal-fill: #bd382d;
+  --focus: #f19589;
   --signal-soft: #45241f;
   --jade: #7fa899;
   --jade-soft: #24332d;
@@ -35,6 +39,8 @@
   --color-ink-muted: var(--ink-muted);
   --color-rule: var(--rule);
   --color-signal: var(--signal);
+  --color-signal-fill: var(--signal-fill);
+  --color-focus: var(--focus);
   --color-signal-soft: var(--signal-soft);
   --color-jade: var(--jade);
   --color-jade-soft: var(--jade-soft);
@@ -65,7 +71,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--signal);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
 
@@ -228,5 +234,21 @@ a {
 @media (min-width: 40rem) {
   .scroll-affordance {
     mask-image: none;
+  }
+}
+
+/* Standalone controls keep a usable touch area. Inline prose links keep text flow. */
+button,
+select,
+input:not([type="checkbox"]):not([type="radio"]),
+summary {
+  min-height: 2.75rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
   }
 }

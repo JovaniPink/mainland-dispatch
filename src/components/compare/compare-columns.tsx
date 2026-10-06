@@ -8,9 +8,9 @@ import { compareMachine } from "@/machines/explorer-machines";
 import { StateLab } from "@/components/state-lab/state-lab";
 
 const roleLabels: Record<string, string> = {
-  mainland: "Mainland source",
-  us: "US source",
-  primary: "Primary document",
+  mainland: "DeepSeek interview",
+  us: "Llama 3.1 release",
+  primary: "Llama 2 release",
 };
 
 function SourceColumn({ source }: { source: Comparison["sources"][number] }) {
@@ -19,7 +19,7 @@ function SourceColumn({ source }: { source: Comparison["sources"][number] }) {
       <p className="font-mono text-xs uppercase tracking-widest text-signal">
         {roleLabels[source.role]}
       </p>
-      <p className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-muted">
+      <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
         {source.outlet} · {formatDate(source.publishedAt)} ·{" "}
         {source.language.toUpperCase()}
       </p>
@@ -28,7 +28,7 @@ function SourceColumn({ source }: { source: Comparison["sources"][number] }) {
         &ldquo;{source.keyQuote}&rdquo;
       </blockquote>
       <div>
-        <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+        <p className="font-mono text-xs uppercase tracking-widest text-jade">
           Framing
         </p>
         <p className="mt-1 text-sm leading-relaxed text-ink-muted">
@@ -56,7 +56,7 @@ export function CompareColumns({ comparison }: { comparison: Comparison }) {
 
   return (
     <div>
-      <div className="chip-row scroll-affordance flex gap-2 overflow-x-auto pb-1 md:hidden">
+      <div className="flex flex-wrap gap-2 pb-1 md:hidden">
         {comparison.sources.map((s, i) => (
           <button
             key={s.role}

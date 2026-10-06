@@ -41,8 +41,8 @@ const CorpusTransparencySchema = z
  * records. Update this snapshot only alongside the catalog tests and docs.
  */
 export const corpusTransparency = CorpusTransparencySchema.parse({
-  auditedAt: "2026-08-14",
-  collectedLeads: 481,
+  auditedAt: "2026-09-15",
+  collectedLeads: 526,
   generalChinaCandidates: 404,
   generalChinaWithheld: 375,
   generalChinaRejected: 29,

@@ -13,7 +13,7 @@ describe("edition front page", () => {
     ).toBeInTheDocument();
 
     const introduction = screen.getByTestId("home-introduction");
-    const entryPoints = within(introduction).getByTestId("home-entry-points");
+    const entryPoints = screen.getByTestId("home-entry-points");
     const entryLinks = within(entryPoints).getAllByRole("link");
     expect(entryLinks.map((link) => link.getAttribute("href"))).toEqual([
       "/notebook/the-arctic-is-not-a-shortcut",
@@ -45,9 +45,13 @@ describe("edition front page", () => {
       within(latest).getByRole("link", { name: "Read Inquiry 10" })
     ).toHaveAttribute("href", "/notebook/the-arctic-is-not-a-shortcut");
     expect(
-      within(latest).getByRole("link", { name: "Examine the sources" })
+      within(latest).getByRole("link", { name: "Sources" })
     ).toHaveAttribute("href", "/notebook/the-arctic-is-not-a-shortcut#sources");
 
+    expect(
+      latest.compareDocumentPosition(entryPoints) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
     const preview = screen.getByTestId("latest-evidence-preview");
     expect(within(preview).getByText("Interpretation")).toBeInTheDocument();
     expect(within(preview).getAllByRole("link")).toHaveLength(3);

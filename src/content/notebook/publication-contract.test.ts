@@ -17,6 +17,17 @@ function cloneEntry(): NotebookEntry {
 }
 
 describe("Notebook publication and provenance contract", () => {
+  it("dates the shared presentation revision separately from source review", () => {
+    for (const entry of publicNotebookEntries) {
+      expect(entry.presentationUpdatedAt).toBe("2026-09-07");
+      expect(entry.updatedAt < entry.presentationUpdatedAt!).toBe(true);
+      expect(
+        entry.sourceTrail.every(
+          (source) => source.retrievedAt <= entry.updatedAt
+        )
+      ).toBe(true);
+    }
+  });
   it("publishes corrected entries and excludes drafts", () => {
     const corrected = {
       ...cloneEntry(),

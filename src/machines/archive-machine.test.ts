@@ -3,7 +3,9 @@ import { archiveMachine } from "./archive-machine";
 
 describe("archiveMachine", () => {
   it("owns view and evidence-filter transitions", () => {
-    const actor = createActor(archiveMachine).start();
+    const actor = createActor(archiveMachine, {
+      input: { latestInquirySlug: "the-arctic-is-not-a-shortcut" },
+    }).start();
 
     actor.send({ type: "SET_VIEW", view: "timeline" });
     actor.send({ type: "FILTER_EVIDENCE", evidence: "contested" });
@@ -17,7 +19,9 @@ describe("archiveMachine", () => {
   });
 
   it("hydrates shareable filters and resets to the public default", () => {
-    const actor = createActor(archiveMachine).start();
+    const actor = createActor(archiveMachine, {
+      input: { latestInquirySlug: "the-arctic-is-not-a-shortcut" },
+    }).start();
 
     actor.send({
       type: "HYDRATE",
@@ -43,13 +47,15 @@ describe("archiveMachine", () => {
         view: "cards",
         publisher: "all",
         year: "all",
-        inquirySlug: "dominance-is-a-dashboard",
+        inquirySlug: "the-arctic-is-not-a-shortcut",
       })
     );
   });
 
   it("owns Notebook inquiry selection", () => {
-    const actor = createActor(archiveMachine).start();
+    const actor = createActor(archiveMachine, {
+      input: { latestInquirySlug: "the-arctic-is-not-a-shortcut" },
+    }).start();
 
     actor.send({
       type: "SELECT_INQUIRY",
@@ -62,7 +68,9 @@ describe("archiveMachine", () => {
   });
 
   it("owns filter-panel visibility without changing shareable filters", () => {
-    const actor = createActor(archiveMachine).start();
+    const actor = createActor(archiveMachine, {
+      input: { latestInquirySlug: "the-arctic-is-not-a-shortcut" },
+    }).start();
 
     expect(actor.getSnapshot().context.filterPanelOpen).toBe(false);
     actor.send({ type: "TOGGLE_FILTER_PANEL" });
@@ -74,7 +82,9 @@ describe("archiveMachine", () => {
   });
 
   it("clears one or all filters without resetting the selected view", () => {
-    const actor = createActor(archiveMachine).start();
+    const actor = createActor(archiveMachine, {
+      input: { latestInquirySlug: "the-arctic-is-not-a-shortcut" },
+    }).start();
 
     actor.send({ type: "SET_VIEW", view: "timeline" });
     actor.send({ type: "FILTER_EVIDENCE", evidence: "contested" });

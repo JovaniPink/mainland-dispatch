@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { dispatches } from "@/content/dispatches";
-import { sourceLeads } from "@/content/source-leads";
 import { formatDate } from "@/content/site";
-import type { EditorialStatus } from "@/content/schema";
+import type { Dispatch, EditorialStatus, SourceLead } from "@/content/schema";
 import { MetaLine, metaParts } from "@/components/dispatch/meta-line";
 import { cn } from "@/lib/utils";
 
@@ -21,13 +19,15 @@ const stages: { id: EditorialStatus; label: string }[] = [
 ];
 
 /** ADP-style queue/detail split: the selected entry opens its evidence beside the queue. */
-export function ReviewQueue() {
-  const queue = dispatches.filter(
-    (dispatch) =>
-      dispatch.editorialStatus !== "published" &&
-      dispatch.editorialStatus !== "corrected" &&
-      dispatch.editorialStatus !== "archived"
-  );
+export function ReviewQueue({
+  queue,
+  sourceLeads,
+}: {
+  /** Review-stage Dispatches, selected on the server. */
+  queue: Dispatch[];
+  /** Only the source leads that the queued Dispatches reference. */
+  sourceLeads: SourceLead[];
+}) {
   const [selectedId, setSelectedId] = useState<string | null>(
     queue[0]?.id ?? null
   );

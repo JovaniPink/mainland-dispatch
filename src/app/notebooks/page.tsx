@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SaveButton } from "@/components/dispatch/save-button";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   latestNotebookEntry,
@@ -59,17 +60,31 @@ export default function NotebooksPage() {
         className="mt-8 grid gap-5 border-l-2 border-signal bg-signal-soft/25 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end"
       >
         <div>
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+          <p className="font-mono text-xs uppercase tracking-widest text-signal">
             Latest · Inquiry{" "}
             {String(latestNotebookEntry.ordinal).padStart(2, "0")}
           </p>
           <h2 className="mt-3 font-serif text-3xl leading-tight">
-            {latestNotebookEntry.title}
+            <Link
+              href={`/notebook/${latestNotebookEntry.slug}`}
+              className="hover:text-signal"
+            >
+              {latestNotebookEntry.title}
+            </Link>
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-ink-muted">
             {latestNotebookEntry.subtitle}
           </p>
         </div>
+        <p className="font-mono text-xs text-ink-muted">
+          {formatDate(latestNotebookEntry.publishedAt)} ·{" "}
+          {latestNotebookEntry.readTime} ·{" "}
+          {latestNotebookEntry.sourceTrail.length} sources
+        </p>
+        <SaveButton
+          target={{ kind: "notebook", id: latestNotebookEntry.slug }}
+          title={latestNotebookEntry.title}
+        />
         <Link
           href={`/notebook/${latestNotebookEntry.slug}`}
           className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
@@ -83,16 +98,16 @@ export default function NotebooksPage() {
           id="all-notebooks"
           className="font-mono text-xs uppercase tracking-widest text-jade"
         >
-          All published Notebooks
+          Earlier inquiries
         </h2>
         <div className="mt-4 divide-y divide-rule border-y border-rule">
-          {entries.map((entry) => (
+          {entries.slice(1).map((entry) => (
             <article
               key={entry.slug}
               data-testid="notebook-index-entry"
               className="grid gap-4 py-6 sm:grid-cols-[5rem_minmax(0,1fr)_auto] sm:items-start"
             >
-              <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+              <p className="font-mono text-xs uppercase tracking-widest text-jade">
                 Inquiry {String(entry.ordinal).padStart(2, "0")}
               </p>
               <div>
@@ -108,11 +123,15 @@ export default function NotebooksPage() {
                   {entry.subtitle}
                 </p>
               </div>
-              <p className="font-mono text-[0.62rem] uppercase tracking-widest text-ink-muted sm:text-right">
+              <p className="font-mono text-xs uppercase tracking-widest text-ink-muted sm:text-right">
                 {formatDate(entry.publishedAt)}
                 <br />
                 {entry.readTime} · {entry.sourceTrail.length} sources
               </p>
+              <SaveButton
+                target={{ kind: "notebook", id: entry.slug }}
+                title={entry.title}
+              />
             </article>
           ))}
         </div>

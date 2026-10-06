@@ -547,6 +547,7 @@ const NotebookBaseSchema = z.object({
   }),
   publishedAt: isoDate,
   updatedAt: isoDate,
+  presentationUpdatedAt: isoDate.optional(),
   readTime: nonEmpty,
   tags: z.array(nonEmpty).min(1),
   editorialStatus: z.enum(["draft", "published", "corrected"]),

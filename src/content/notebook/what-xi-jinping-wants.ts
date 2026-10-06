@@ -9,11 +9,11 @@ export const whatXiJinpingWants = parseNotebookEntry({
   slug: "what-xi-jinping-wants",
   title: "What Xi Jinping Wants",
   subtitle:
-    "Following Kevin Rudd’s argument into its sources, complications, and unresolved questions.",
+    "Kevin Rudd argues that ideology helps explain Xi Jinping's choices. What does that model illuminate, and where do interpretation and prediction outrun the evidence?",
   description:
     "A public research notebook on Kevin Rudd’s model of Xi Jinping: what it explains, where the evidence stops, and why 2027, 2028, and 2049 are not the same claim.",
   thesis:
-    "Xi Jinping's ideological language deserves to be treated as part of the machinery of rule, not dismissed as ceremony. It is still a disciplined hypothesis rather than a master key: public doctrine, institutional action, observed outcomes, and imagined futures must remain separate layers of evidence.",
+    "Kevin Rudd's model treats Xi Jinping's ideological language as part of how he governs. That is a useful hypothesis to examine, rather than a complete explanation of his choices. Public doctrine, institutional action, observed outcomes, and imagined futures remain separate kinds of evidence; none gives direct access to a leader's mind.",
   frontPagePreview: {
     finding:
       "The strongest reading treats ideology as an operating framework while keeping the 2027 readiness benchmark, the 2028 miscalculation scenario, and the 2049 political horizon as different claims.",
@@ -25,6 +25,7 @@ export const whatXiJinpingWants = parseNotebookEntry({
       "notebook-source-cia-2027",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-07-23",
   updatedAt: "2026-07-23",
   readTime: "14 min",

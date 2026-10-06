@@ -39,7 +39,7 @@ export const EvidenceStatusSchema = z.enum([
   "corrected",
 ]);
 
-const isoDate = z
+export const isoDate = z
   .string()
   .regex(/^\d{4}-\d{2}-\d{2}$/, "expected YYYY-MM-DD")
   .refine((value) => {
@@ -49,7 +49,7 @@ const isoDate = z
     );
   }, "expected a real calendar date");
 
-const nonEmpty = z.string().trim().min(1);
+export const nonEmpty = z.string().trim().min(1);
 const slug = nonEmpty.regex(
   /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
   "expected a lowercase kebab-case slug"
@@ -193,79 +193,30 @@ export const DispatchSchema = z.discriminatedUnion("kind", [
 
 export type Dispatch = z.infer<typeof DispatchSchema>;
 export type DispatchKind = Dispatch["kind"];
+
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never;
+
+/**
+ * A Dispatch as it may cross into client props or public payloads: the private
+ * source-lead link is removed so no lead ID reaches the browser.
+ */
+export type PublicDispatch = DistributiveOmit<Dispatch, "sourceLeadId">;
 export type EditorialStatus = z.infer<typeof EditorialStatusSchema>;
 export type EvidenceStatus = z.infer<typeof EvidenceStatusSchema>;
 export type Vertical = z.infer<typeof VerticalSchema>;
 
 /* ── Editorial source leads ─────────────────────────────────────── */
 
-export const SourceLeadSchema = z.object({
-  id: nonEmpty.regex(
-    /^lead-[a-z0-9]+(?:-[a-z0-9]+)*$/,
-    "expected a lead- prefixed id"
-  ),
-  title: nonEmpty,
-  url: z.url(),
-  publisher: nonEmpty,
-  publishedAt: isoDate.optional(),
-  publicationYear: z.number().int().min(1900).max(2100).optional(),
-  accessedAt: isoDate,
-  contentType: z.enum([
-    "primary",
-    "research",
-    "reporting",
-    "analysis",
-    "podcast",
-  ]),
-  claimedGrade: z.enum(["A", "B", "C", "D"]).optional(),
-  sourceOrigin: z.enum(["user-sourcebook", "web-research", "prior-intake"]),
-  reviewState: z.enum([
-    "supplied",
-    "metadata-checked",
-    "source-read",
-    "evidence-reviewed",
-  ]),
-  disposition: z
-    .enum(["pending", "drafted", "withheld", "rejected"])
-    .default("pending"),
-  accessStatus: z
-    .enum(["reachable", "paywalled", "restricted", "unavailable", "unstable"])
-    .default("reachable"),
-  urlStatus: z
-    .enum(["supplied", "redirect-resolved", "publisher-canonical"])
-    .default("supplied"),
-  canonicalCheckedAt: isoDate.optional(),
-  byline: nonEmpty.optional(),
-  language: nonEmpty.optional(),
-  translationStatus: z
-    .enum([
-      "original-language",
-      "original-english",
-      "publisher-translation",
-      "independent-translation",
-    ])
-    .optional(),
-  reviewedAt: isoDate.optional(),
-  decisionReason: nonEmpty.optional(),
-  dispatchId: nonEmpty
-    .regex(/^d-[a-z0-9]+(?:-[a-z0-9]+)*$/, "expected a d- prefixed id")
-    .optional(),
-  collectionId: nonEmpty.optional(),
-  topics: z.array(nonEmpty).min(1),
-  evidenceStatus: z.enum([
-    "confirmed",
-    "vendor-claim",
-    "disputed",
-    "pending",
-    "unverified",
-  ]),
-  paywall: z.boolean().default(false),
-  archiveUrl: z.url().optional(),
-  notes: nonEmpty,
-  nextReviewAt: isoDate.optional(),
-});
-
-export type SourceLead = z.infer<typeof SourceLeadSchema>;
+// The SourceLead schema lives in ./source-lead-schema so that client bundles
+// which validate Dispatches never carry the private lead record shape.
+export type {
+  SourceLead,
+  SourceLeadRegion,
+  SourceLeadTaxonomy,
+  SourceLeadTheme,
+} from "./source-lead-schema";
 
 /* ── Compare ──────────────────────────────────────────────────────── */
 
@@ -320,6 +271,7 @@ export const TraceSchema = z.object({
   title: nonEmpty,
   intro: nonEmpty,
   currentAssessment: nonEmpty,
+  assessmentAsOf: isoDate,
   assessmentStatus: EvidenceStatusSchema,
   entries: z.array(TraceEntrySchema).min(2),
   provenance: z.enum(["verified", "prototype"]),

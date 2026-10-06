@@ -2,7 +2,10 @@ import { publishedDispatches } from "@/content/dispatches";
 import { publicNotebookEntries } from "@/content/notebook";
 import type { Dispatch, EvidenceStatus, Vertical } from "@/content/schema";
 import type { NotebookEntry } from "@/content/notebook/schema";
-import { notebookSourceKnowledgeId } from "@/content/notebook/source-authority";
+import {
+  notebookSourceKnowledgeId,
+  dispatchSourceKnowledgeId,
+} from "@/content/notebook/source-authority";
 import { siteUrl } from "@/lib/seo";
 
 type KnowledgeObject = Readonly<Record<string, unknown>> & {
@@ -89,7 +92,7 @@ const common = ({
 });
 
 function dispatchObjects(dispatch: Dispatch): KnowledgeObject[] {
-  const sourceId = `mainland-dispatch:source:${dispatch.slug}-canonical`;
+  const sourceId = dispatchSourceKnowledgeId(dispatch.slug);
   const claimIds = dispatch.claims.map(
     (claim) =>
       `mainland-dispatch:claim:${dispatch.slug}-${claim.id.replace(/^claim-/, "")}`

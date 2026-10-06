@@ -1,13 +1,13 @@
-import type { Dispatch, DispatchKind, Vertical } from "@/content/schema";
+import type { DispatchKind, PublicDispatch, Vertical } from "@/content/schema";
 
-export function filterDispatches(
-  all: Dispatch[],
+export function filterDispatches<T extends PublicDispatch>(
+  all: T[],
   opts: {
     vertical: Vertical | "all";
     kind: DispatchKind | "all";
     query: string;
   }
-): Dispatch[] {
+): T[] {
   const q = opts.query.trim().toLowerCase();
   return all.filter((d) => {
     if (opts.vertical !== "all" && !d.verticals.includes(opts.vertical)) {
@@ -33,6 +33,6 @@ export function filterDispatches(
   });
 }
 
-export function sortByCuratedDesc(all: Dispatch[]): Dispatch[] {
+export function sortByCuratedDesc<T extends PublicDispatch>(all: T[]): T[] {
   return [...all].sort((a, b) => b.curatedAt.localeCompare(a.curatedAt));
 }

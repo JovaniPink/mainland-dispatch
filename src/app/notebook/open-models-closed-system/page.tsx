@@ -1,5 +1,6 @@
+import { PromiseLedgerFigure } from "@/components/notebook/promise-ledger-figure";
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { NotebookAudioFacade } from "@/components/notebook/notebook-audio-facade";
 import {
   NotebookFormats,
@@ -21,6 +22,7 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
+  ["promise-ledger", "Promises and evidence"],
   ["why", "Why this stayed with me"],
   ["proposal", "What Xi proposed"],
   ["strongest", "Where Yu is strongest"],
@@ -51,6 +53,7 @@ export default function OpenModelsClosedSystemPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -61,6 +64,10 @@ export default function OpenModelsClosedSystemPage() {
         readingRuleLabel="Editorial posture"
         contentClassName="lg:max-w-[46rem]"
       >
+        <section id="promise-ledger" className="scroll-mt-32">
+          <PromiseLedgerFigure entry={entry} />
+        </section>
+
         <section className="mt-12">
           <NotebookSectionHeading id="why" eyebrow="The starting point">
             Why this stayed with me
@@ -146,7 +153,7 @@ export default function OpenModelsClosedSystemPage() {
             <NotebookProse paragraphs={entry.sections.strongest} />
           </div>
           <aside className="mt-6 border-l-2 border-jade bg-jade-soft/25 p-4">
-            <p className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+            <p className="font-mono text-xs uppercase tracking-widest text-jade">
               Institutional context
             </p>
             <p className="mt-2 text-sm leading-7">
@@ -160,7 +167,7 @@ export default function OpenModelsClosedSystemPage() {
               href="https://www.hudson.org/experts/1356-miles-yu"
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-block font-mono text-[0.65rem] uppercase tracking-widest text-signal hover:text-ink"
+              className="mt-3 inline-block font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
             >
               Inspect the source context ↗
             </a>
@@ -190,10 +197,10 @@ export default function OpenModelsClosedSystemPage() {
                 className="flex min-w-0 flex-col border border-rule p-4"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -205,7 +212,7 @@ export default function OpenModelsClosedSystemPage() {
                 <p className="mt-3 text-sm leading-6 text-ink-muted">
                   {item.assessment}
                 </p>
-                <p className="mt-auto pt-4 font-mono text-[0.58rem] uppercase tracking-widest text-jade">
+                <p className="mt-auto pt-4 font-mono text-xs uppercase tracking-widest text-jade">
                   {item.sourceIds.length} displayed{" "}
                   {item.sourceIds.length === 1 ? "source" : "sources"}
                 </p>
@@ -261,7 +268,10 @@ export default function OpenModelsClosedSystemPage() {
           actionLabel={`Examine ${entry.sourceTrail.length} sources`}
         >
           <div className="mt-6">
-            <NotebookSourceTrail sources={entry.sourceTrail} />
+            <NotebookSourceTrail
+              headingId="source-ledger"
+              sources={entry.sourceTrail}
+            />
           </div>
         </NotebookSecondarySection>
 
@@ -278,7 +288,7 @@ export default function OpenModelsClosedSystemPage() {
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -289,7 +299,7 @@ export default function OpenModelsClosedSystemPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -304,23 +314,7 @@ export default function OpenModelsClosedSystemPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/archive?view=relationships&inquiry=open-models-closed-system"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore its source relationships
-          </Link>
-          <Link
-            href="/notebook/what-xi-jinping-wants"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read the founding inquiry
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

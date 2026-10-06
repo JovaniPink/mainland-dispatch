@@ -1,6 +1,5 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { NotebookCompanionLinks } from "@/components/notebook/notebook-custody-links";
 import {
   NotebookProse,
   NotebookSectionHeading,
@@ -20,8 +19,8 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
-  ["frame", "Origin is a sequence"],
   ["trade", "The four proof gates"],
+  ["frame", "Origin is a sequence"],
   ["admission", "Canadian admission"],
   ["production", "Production evidence"],
   ["qualification", "USMCA qualification"],
@@ -51,6 +50,7 @@ export default function WhereDoesOriginChangePage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -61,24 +61,25 @@ export default function WhereDoesOriginChangePage() {
         contentClassName="lg:max-w-[62rem]"
       >
         <section className="mt-12">
-          <NotebookSectionHeading id="frame" eyebrow="The evidentiary frame">
-            Origin is a sequence, not a direction of travel
-          </NotebookSectionHeading>
-          <div className="mt-6">
-            <NotebookProse paragraphs={entry.sections.frame} />
-          </div>
-        </section>
-
-        <section className="mt-12">
           <NotebookSectionHeading id="trade" eyebrow="Four separate records">
             Crossing one gate does not complete the next
           </NotebookSectionHeading>
           <div className="mt-8">
             <TransshipmentEvidenceFigure
+              sources={entry.sourceTrail}
               proofs={entry.tradeProofs}
               pressure={entry.tradePressure}
               frames={entry.tradeFrames}
             />
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <NotebookSectionHeading id="frame" eyebrow="The evidentiary frame">
+            Origin is a sequence, not a direction of travel
+          </NotebookSectionHeading>
+          <div className="mt-6">
+            <NotebookProse paragraphs={entry.sections.frame} />
           </div>
         </section>
 
@@ -94,19 +95,19 @@ export default function WhereDoesOriginChangePage() {
           </div>
           <dl className="mt-7 grid gap-3 sm:grid-cols-3">
             <div className="border border-jade bg-jade-soft/25 p-5">
-              <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+              <dt className="font-mono text-xs uppercase tracking-widest text-jade">
                 First-period uses
               </dt>
               <dd className="mt-3 font-serif text-4xl">15,603</dd>
             </div>
             <div className="border border-rule bg-paper-warm/25 p-5">
-              <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+              <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                 First-period remainder
               </dt>
               <dd className="mt-3 font-serif text-4xl">8,897</dd>
             </div>
             <div className="border border-signal bg-signal-soft/25 p-5">
-              <dt className="font-mono text-[0.6rem] uppercase tracking-widest text-signal">
+              <dt className="font-mono text-xs uppercase tracking-widest text-signal">
                 Derived second-period capacity
               </dt>
               <dd className="mt-3 font-serif text-4xl">33,397</dd>
@@ -169,10 +170,10 @@ export default function WhereDoesOriginChangePage() {
             {entry.claimAudit.map((item) => (
               <article key={item.id} className="border border-rule p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -198,7 +199,10 @@ export default function WhereDoesOriginChangePage() {
           actionLabel={`Examine ${entry.sourceTrail.length} sources`}
         >
           <div className="mt-6">
-            <NotebookSourceTrail sources={entry.sourceTrail} />
+            <NotebookSourceTrail
+              headingId="source-ledger"
+              sources={entry.sourceTrail}
+            />
           </div>
         </NotebookSecondarySection>
 
@@ -211,13 +215,11 @@ export default function WhereDoesOriginChangePage() {
           </div>
         </section>
 
-        <NotebookCompanionLinks relationships={entry.relatedNotebooks ?? []} />
-
         <section
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -226,7 +228,7 @@ export default function WhereDoesOriginChangePage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -241,23 +243,7 @@ export default function WhereDoesOriginChangePage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/archive?view=relationships&inquiry=where-does-origin-change"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore its source relationships
-          </Link>
-          <Link
-            href="/notebook/what-gets-through"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read corrected Inquiry 06
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

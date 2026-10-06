@@ -13,7 +13,7 @@ export function NotebookStatus({ status }: { status: NotebookEvidenceStatus }) {
   return (
     <span
       className={cn(
-        "inline-flex border px-2 py-1 font-mono text-[0.6rem] uppercase tracking-widest",
+        "inline-flex border px-2 py-1 font-mono text-xs uppercase tracking-widest",
         status === "observed" && "border-jade bg-jade-soft/60 text-jade",
         status === "official-position" &&
           "border-ink-muted bg-paper-warm text-ink",

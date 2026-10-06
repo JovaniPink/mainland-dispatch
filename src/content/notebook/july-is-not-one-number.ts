@@ -6,11 +6,11 @@ export const julyIsNotOneNumber = parseEconomicSignalsNotebookEntry({
   slug: "july-is-not-one-number",
   title: "July Is Not One Number",
   subtitle:
-    "Six releases describe different parts of one month, on different clocks, with different definitions.",
+    "July's economic releases point in different directions. What do six indicators reveal when their observation periods, populations, and comparison bases stay attached?",
   description:
     "A bounded reading of China's July 2026 industrial output, profits, retail sales, investment, property, and manufacturing survey data.",
   thesis:
-    "July's releases show industrial resilience alongside property contraction and soft household demand, but their periods, populations, price bases, and methods differ too much to collapse into a single verdict about China's economy.",
+    "July's releases show industrial resilience alongside property contraction and soft household demand. Each indicator measures a different population, period, or comparison, so their movements cannot be added into one verdict. Reading them separately preserves the distinction between an observed change, the government's characterization, and an analyst's explanation.",
   frontPagePreview: {
     finding:
       "Industrial output and profits grew while retail sales, investment, property, and the manufacturing survey exposed a narrower and more uneven expansion.",
@@ -23,6 +23,7 @@ export const julyIsNotOneNumber = parseEconomicSignalsNotebookEntry({
       "notebook-source-july-profits",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-08-29",
   updatedAt: "2026-08-29",
   readTime: "14 min",

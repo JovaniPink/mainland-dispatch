@@ -12,11 +12,11 @@ export const openModelsClosedSystem = parseNotebookEntry({
   slug: "open-models-closed-system",
   title: "Open Models, Closed System?",
   subtitle:
-    "What kind of technological openness is China offering, who benefits from it, what dependencies accompany it, and where does that openness stop?",
+    "China offers open AI models and international cooperation through a politically controlled system. Who benefits, what dependencies follow, and where does the openness end?",
   description:
     "A source-audited inquiry into the real goods, dependencies, governance, and political limits in China’s proposed international AI order.",
   thesis:
-    "China’s open-AI strategy is neither altruistic openness nor simple deception. It offers real technical and institutional goods through a politically controlled system; the decisive questions are where that openness ends, what dependencies it creates, and who governs the resulting order.",
+    "China's open-AI strategy offers real technical and institutional goods through a politically controlled system. Its openness has limits, and its benefits can bring dependencies. The question is how those offers work in practice: what has been delivered, what remains a promise, and who governs the resulting order.",
   frontPagePreview: {
     finding:
       "China's AI proposition combines real model access, training, and institution-building with binding domestic political controls and unresolved questions about cross-border access.",
@@ -28,6 +28,7 @@ export const openModelsClosedSystem = parseNotebookEntry({
       "notebook-source-stanford-ai-index",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-07-28",
   updatedAt: "2026-08-08",
   readTime: "18 min",

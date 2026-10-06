@@ -35,11 +35,11 @@ export const theArcticIsNotAShortcut = parseArcticRouteNotebookEntry({
   slug: "the-arctic-is-not-a-shortcut",
   title: "The Arctic Is Not a Shortcut",
   subtitle:
-    "A shorter advertised distance does not create a dependable corridor. Ice, Russian administration, rescue capacity, insurance, sanctions, vessel capability, and environmental rules remain part of every sailing.",
+    "A shorter Arctic route promises faster container journeys. Can seasonal sailings become dependable service, and what do the public records actually establish about their scale?",
   description:
-    "A source-audited explanation of the Northern Sea Route's seasonal scale, operating constraints, Russian governance, environmental rules, and unresolved voyage evidence.",
+    "A shorter Arctic route raises a harder question: can seasonal sailings become dependable service? Examine the scale, operating constraints, and unresolved voyage evidence.",
   thesis:
-    "The Northern Sea Route is a bounded seasonal container corridor, not a reliable substitute for Hormuz energy flows or Suez-scale container traffic. A shorter advertised distance still depends on ice conditions, Russian administration and rescue capacity, insurance, sanctions, vessel capability, and environmental rules, while a planned or departed voyage remains different from completed and repeatable service.",
+    "The Northern Sea Route supports a small seasonal container experiment under ice, Russian-administration, insurance, sanctions, vessel, and environmental constraints. It cannot be read as a reliable substitute for Hormuz energy flows or Suez-scale container traffic. A schedule or reported departure still does not establish completed transit or repeatable service.",
   frontPagePreview: {
     finding:
       "The Northern Sea Route can shorten selected seasonal container voyages, but the admitted record establishes only a bounded experiment under ice, Russian-administration, insurance, sanctions, and environmental constraints.",
@@ -52,6 +52,7 @@ export const theArcticIsNotAShortcut = parseArcticRouteNotebookEntry({
       "notebook-source-risk-zhoushan-departure",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-09-01",
   updatedAt: "2026-09-01",
   readTime: "16 min",
@@ -93,9 +94,9 @@ export const theArcticIsNotAShortcut = parseArcticRouteNotebookEntry({
       "This inquiry offers no ice certification, AIS feed, voyage tracker, navigation advice, safety promise, sanctions screening, insurance recommendation, or route selection. The map is a source-backed schematic corridor.",
     ],
     changed: [
-      "September 1 commission: Inquiry 04's Arctic route, points, scale measures, chronology, source records, turning point, and claim audits moved here as one custody unit.",
-      "The split preserves shared Al Jazeera and Guardian source identities while giving each publication scope-specific context. Moved source and knowledge identities retain their predecessor IDs.",
-      "The publication refresh found a later August 19 final-China-port departure report but no public arrival or completed-transit record. That URL remains dated research-addendum context and is not silently admitted to this article's closed source cohort.",
+      "On September 1, the Arctic material became a separate inquiry. Its route, measurements, chronology, sources, and claim review moved together from Inquiry 04.",
+      "Both inquiries still cite the same Al Jazeera and Guardian records, with context specific to each article. Existing source identifiers and links remain valid.",
+      "The publication refresh found a later report of departure from the final Chinese port on August 19, but no public arrival or completed-transit record. The later report remains in the dated research addendum, outside the sources reviewed for this article.",
     ],
   },
   sourceTrail: arcticSources,

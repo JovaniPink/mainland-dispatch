@@ -15,25 +15,30 @@ verified reporting.
 
 ## Canonical commands
 
-| Command                      | Purpose                                                          |
-| ---------------------------- | ---------------------------------------------------------------- |
-| `npm run dev`                | Start local development with State Lab inspectors                |
-| `npm run lint`               | Run ESLint                                                       |
-| `npm run baseline:check`     | Validate metadata, favicon, generated types, and install hooks   |
-| `npm run toolchain:check`    | Validate the TypeScript 7 CLI and TypeScript 6 API contract      |
-| `npm run typecheck`          | Generate route types and check with the TypeScript 7 CLI         |
-| `npm run typecheck:compat`   | Generate route types and check with the TypeScript 6 API line    |
-| `npm test`                   | Run Jest and Testing Library tests                               |
-| `npm run audit:production`   | Reject high-severity advisories in deployed dependencies         |
-| `npm run audit:dependencies` | Reject high-severity advisories in the complete dependency graph |
-| `npm run build`              | Build and validate the Next.js production artifact               |
-| `npm run test-all`           | Run formatting, lint, types, tests, and the production build     |
-| `npm run format`             | Format source files with Prettier                                |
+| Command                         | Purpose                                                          |
+| ------------------------------- | ---------------------------------------------------------------- |
+| `npm run dev`                   | Start local development with State Lab inspectors                |
+| `npm run lint`                  | Run ESLint                                                       |
+| `npm run baseline:check`        | Validate metadata, favicon, generated types, and install hooks   |
+| `npm run toolchain:check`       | Validate the TypeScript 7 CLI and TypeScript 6 API contract      |
+| `npm run typecheck`             | Generate route types and check with the TypeScript 7 CLI         |
+| `npm run typecheck:compat`      | Generate route types and check with the TypeScript 6 API line    |
+| `npm test`                      | Run Jest and Testing Library tests                               |
+| `npm run audit:production`      | Reject high-severity advisories in deployed dependencies         |
+| `npm run audit:dependencies`    | Reject high-severity advisories in the complete dependency graph |
+| `npm run build`                 | Build and validate the Next.js production artifact               |
+| `npm run audit:public-boundary` | Reject source-lead data in client chunks and public documents    |
+| `npm run test-all`              | Run formatting, lint, types, tests, and the production build     |
+| `npm run format`                | Format source files with Prettier                                |
 
 ## Working rules
 
 - Public pages may consume only `publishedDispatches`; never import all Desk
   records into a public stream, route generator, relation, or saved view.
+- Source-lead data is private. `source-leads.ts`, its schema, taxonomy, and
+  `dispatches.ts` are `server-only`; client components receive resolved,
+  minimal props, and Dispatches cross into client props only through
+  `toPublicDispatch`. `audit:public-boundary` enforces this on the build.
 - Do not change `provenance` from `prototype` to `verified` without replacing
   every sample claim and URL with reviewed source material.
 - Keep the Desk out of public navigation. It is a local sandbox, not an

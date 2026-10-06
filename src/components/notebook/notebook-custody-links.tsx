@@ -17,7 +17,7 @@ export function NotebookCompanionLinks({
     >
       <h2
         id="companion-inquiries-title"
-        className="font-mono text-[0.65rem] uppercase tracking-widest text-jade"
+        className="font-mono text-xs uppercase tracking-widest text-jade"
       >
         Companion inquiry
       </h2>
@@ -54,7 +54,7 @@ export function NotebookLegacyFragmentNotices({
           <p className="text-sm leading-6 text-ink-muted">{fragment.notice}</p>
           <Link
             href={`/notebook/${fragment.successorSlug}#${fragment.successorFragment}`}
-            className="mt-2 inline-block font-mono text-[0.65rem] uppercase tracking-widest text-signal underline underline-offset-4 hover:text-ink"
+            className="mt-2 inline-block font-mono text-xs uppercase tracking-widest text-signal underline underline-offset-4 hover:text-ink"
           >
             Open the preserved evidence
           </Link>

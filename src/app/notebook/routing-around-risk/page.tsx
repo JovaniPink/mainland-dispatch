@@ -1,10 +1,8 @@
+import { FigureSources } from "@/components/notebook/figure-sources";
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ChokepointPortfolioMap } from "@/components/notebook/chokepoint-portfolio-map";
-import {
-  NotebookCompanionLinks,
-  NotebookLegacyFragmentNotices,
-} from "@/components/notebook/notebook-custody-links";
+import { NotebookLegacyFragmentNotices } from "@/components/notebook/notebook-custody-links";
 import {
   NotebookFormats,
   NotebookProse,
@@ -29,9 +27,9 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
+  ["map", "Interactive corridor map"],
   ["why", "Why this question matters"],
   ["verdict", "The short answer"],
-  ["map", "Interactive corridor map"],
   ["scale", "Three scale checks"],
   ["chokepoints", "Hormuz and Suez"],
   ["portfolio", "The five-part portfolio"],
@@ -61,6 +59,7 @@ export default function RoutingAroundRiskPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -70,6 +69,37 @@ export default function RoutingAroundRiskPage() {
         readingRule="Routing around one hazard relocates exposure. It does not erase the underlying dependency."
         contentClassName="lg:max-w-[62rem]"
       >
+        <section className="mt-12">
+          <NotebookSectionHeading
+            id="map"
+            eyebrow="Click-to-load · OpenFreeMap basemap"
+          >
+            Explore where the risk moves
+          </NotebookSectionHeading>
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-ink-muted">
+            The map combines source-backed places with schematic corridor lines.
+            It does not display live shipping, AIS evidence, security
+            conditions, or navigation advice. All evidence remains readable if
+            the basemap is never loaded.
+          </p>
+          <figure aria-labelledby="portfolio-map-title" className="mt-7">
+            <figcaption
+              id="portfolio-map-title"
+              className="mb-5 font-serif text-xl"
+            >
+              Interpretation: each workaround has a function and a displaced
+              risk
+            </figcaption>
+            <ChokepointPortfolioMap subset={nonArcticPortfolioSubset} />
+            <FigureSources
+              ids={[
+                ...new Set(entry.routes.flatMap((route) => route.sourceIds)),
+              ]}
+              sources={entry.sourceTrail}
+            />
+          </figure>
+        </section>
+
         <section className="mt-12">
           <NotebookSectionHeading id="why" eyebrow="The initiating claim">
             Why this question matters
@@ -87,24 +117,6 @@ export default function RoutingAroundRiskPage() {
             <NotebookProse paragraphs={entry.sections.verdict} />
           </div>
           <PortfolioLogic />
-        </section>
-
-        <section className="mt-12">
-          <NotebookSectionHeading
-            id="map"
-            eyebrow="Click-to-load · OpenFreeMap basemap"
-          >
-            Explore where the risk moves
-          </NotebookSectionHeading>
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-ink-muted">
-            The map combines source-backed places with schematic corridor lines.
-            It does not display live shipping, AIS evidence, security
-            conditions, or navigation advice. All evidence remains readable if
-            the basemap is never loaded.
-          </p>
-          <div className="mt-7">
-            <ChokepointPortfolioMap subset={nonArcticPortfolioSubset} />
-          </div>
         </section>
 
         <section className="mt-12">
@@ -203,10 +215,10 @@ export default function RoutingAroundRiskPage() {
                 className="flex min-w-0 flex-col border border-rule p-4"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -218,7 +230,7 @@ export default function RoutingAroundRiskPage() {
                 <p className="mt-3 text-sm leading-6 text-ink-muted">
                   {item.assessment}
                 </p>
-                <p className="mt-auto pt-4 font-mono text-[0.58rem] uppercase tracking-widest text-jade">
+                <p className="mt-auto pt-4 font-mono text-xs uppercase tracking-widest text-jade">
                   {item.sourceIds.length} displayed{" "}
                   {item.sourceIds.length === 1 ? "source" : "sources"}
                 </p>
@@ -308,13 +320,11 @@ export default function RoutingAroundRiskPage() {
           </div>
         </section>
 
-        <NotebookCompanionLinks relationships={entry.relatedNotebooks ?? []} />
-
         <section
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -325,7 +335,7 @@ export default function RoutingAroundRiskPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -340,23 +350,7 @@ export default function RoutingAroundRiskPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/archive"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore the evidence archive
-          </Link>
-          <Link
-            href="/notebook/dominance-is-a-dashboard"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read Notebook Three
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

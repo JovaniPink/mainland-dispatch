@@ -1,5 +1,7 @@
+import "server-only";
 import { z } from "zod";
-import { SourceLeadSchema } from "./schema";
+import { SourceLeadSchema } from "./source-lead-schema";
+import { classifySourceLead } from "./source-lead-taxonomy";
 import { chinaArticleIntake01 } from "./source-lead-batches/china-article-intake-01";
 import { chinaArticleIntake02 } from "./source-lead-batches/china-article-intake-02";
 import { chinaArticleIntake03 } from "./source-lead-batches/china-article-intake-03";
@@ -13,6 +15,8 @@ import { chinaArticleIntake10 } from "./source-lead-batches/china-article-intake
 import { chinaArticleIntake11 } from "./source-lead-batches/china-article-intake-11";
 import { chinaArticleIntake12 } from "./source-lead-batches/china-article-intake-12";
 import { chinaArticleIntake13 } from "./source-lead-batches/china-article-intake-13";
+import { chinaCriticalMinerals20260906 } from "./source-lead-batches/china-critical-minerals-2026-09-06";
+import { chinaNews20260915 } from "./source-lead-batches/china-news-2026-09-15";
 import { chinaQualityLinks20260814 } from "./source-lead-batches/china-quality-links-2026-08-14";
 import { existingDispatchCanonicalSources } from "./source-lead-batches/existing-dispatch-canonical-sources";
 
@@ -70,6 +74,8 @@ const leads = [
   ...chinaArticleIntake11,
   ...chinaArticleIntake12,
   ...chinaArticleIntake13,
+  ...chinaCriticalMinerals20260906,
+  ...chinaNews20260915,
   ...chinaQualityLinks20260814,
   ...existingDispatchCanonicalSources,
   {
@@ -1218,6 +1224,7 @@ export const sourceLeads = SourceLeadCatalogSchema.parse(
     disposition: "pending",
     urlStatus: "supplied",
     ...lead,
+    taxonomy: classifySourceLead(lead),
     ...(draftedDispatchByLeadId.has(lead.id)
       ? {
           reviewState: "evidence-reviewed",

@@ -1,5 +1,5 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { EnergySystemFigure } from "@/components/notebook/energy-system-figure";
 import {
   NotebookFormats,
@@ -20,8 +20,8 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
-  ["frame", "The four-layer frame"],
   ["system", "Eight measures"],
+  ["frame", "The four-layer frame"],
   ["mix", "Generation mix"],
   ["output", "Generation volume"],
   ["capacity", "Installed capacity"],
@@ -51,6 +51,7 @@ export default function BelowHalfIsNotGonePage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-audited energy-system interpretation"
@@ -60,28 +61,6 @@ export default function BelowHalfIsNotGonePage() {
         readingRule="Keep share, output, capacity, utilization, period, unit, and evidence kind attached. The four layers cannot be added into one verdict."
         contentClassName="lg:max-w-[62rem]"
       >
-        <section className="mt-12">
-          <NotebookSectionHeading
-            id="frame"
-            eyebrow="Bounded frame - January through June 2026"
-          >
-            Below half is one layer, not the whole system
-          </NotebookSectionHeading>
-          <div className="mt-6">
-            <NotebookProse paragraphs={entry.sections.frame} />
-          </div>
-          <aside className="mt-7 border-l-2 border-signal bg-signal-soft/25 p-5">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-signal">
-              Editorial boundary
-            </p>
-            <p className="mt-3 text-sm leading-7">
-              This is source-reviewed interpretation, not verified original
-              reporting. Official measurement, independent analysis, modeled
-              estimates, and forecasts remain separately labeled.
-            </p>
-          </aside>
-        </section>
-
         <section className="mt-12">
           <NotebookSectionHeading
             id="system"
@@ -95,6 +74,28 @@ export default function BelowHalfIsNotGonePage() {
               sources={entry.sourceTrail}
             />
           </div>
+        </section>
+
+        <section className="mt-12">
+          <NotebookSectionHeading
+            id="frame"
+            eyebrow="Bounded frame - January through June 2026"
+          >
+            Below half is one layer, not the whole system
+          </NotebookSectionHeading>
+          <div className="mt-6">
+            <NotebookProse paragraphs={entry.sections.frame} />
+          </div>
+          <aside className="mt-7 border-l-2 border-signal bg-signal-soft/25 p-5">
+            <p className="font-mono text-xs uppercase tracking-widest text-signal">
+              Editorial boundary
+            </p>
+            <p className="mt-3 text-sm leading-7">
+              This is source-reviewed interpretation, not verified original
+              reporting. Official measurement, independent analysis, modeled
+              estimates, and forecasts remain separately labeled.
+            </p>
+          </aside>
         </section>
 
         <section className="mt-12">
@@ -156,7 +157,7 @@ export default function BelowHalfIsNotGonePage() {
             {entry.alternativeReadings.map((item, index) => (
               <li key={item.id} className="border border-rule p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="font-mono text-[0.62rem] uppercase tracking-widest text-jade">
+                  <p className="font-mono text-xs uppercase tracking-widest text-jade">
                     Reading {String(index + 1).padStart(2, "0")}
                   </p>
                   <NotebookStatus status={item.status} />
@@ -176,7 +177,7 @@ export default function BelowHalfIsNotGonePage() {
             <NotebookProse paragraphs={entry.sections.synthesis} />
           </div>
           <aside className="mt-10 border-t border-rule pt-8">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+            <p className="font-mono text-xs uppercase tracking-widest text-jade">
               Three controlling formats
             </p>
             <h3 className="mt-2 font-serif text-2xl leading-tight">
@@ -244,18 +245,7 @@ export default function BelowHalfIsNotGonePage() {
           </p>
         </section>
 
-        <nav
-          aria-label="Notebook navigation"
-          className="mt-10 flex justify-start border-t border-rule pt-6"
-        >
-          <Link
-            href="/notebook/july-is-not-one-number"
-            aria-label="Read Inquiry 07"
-            className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
-          >
-            &lt;- Read Inquiry 07
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

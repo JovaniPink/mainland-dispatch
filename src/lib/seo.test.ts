@@ -79,14 +79,14 @@ describe("SEO publication contract", () => {
         type: "article",
         url: canonical,
         publishedTime: `${entry.publishedAt}T00:00:00.000Z`,
-        modifiedTime: `${entry.updatedAt}T00:00:00.000Z`,
+        modifiedTime: `${entry.presentationUpdatedAt ?? entry.updatedAt}T00:00:00.000Z`,
       });
       expect(jsonLd).toMatchObject({
         "@type": "Article",
         "@id": `${canonical}#article`,
         url: canonical,
         datePublished: entry.publishedAt,
-        dateModified: entry.updatedAt,
+        dateModified: entry.presentationUpdatedAt ?? entry.updatedAt,
         image: [absoluteUrl(socialImage)],
         author: { "@id": organizationId },
         publisher: { "@id": organizationId },

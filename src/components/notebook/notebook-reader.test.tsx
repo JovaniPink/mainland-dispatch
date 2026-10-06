@@ -50,7 +50,7 @@ describe("Notebook reader shell", () => {
     window.history.replaceState({}, "", "/notebook/a-test-inquiry");
   });
 
-  it("places the working thesis before metadata and section navigation", () => {
+  it("places dated metadata before the thesis and section navigation", () => {
     render(<ReaderFixture />);
 
     const thesis = screen.getByTestId("working-thesis");
@@ -58,7 +58,7 @@ describe("Notebook reader shell", () => {
     const sectionsButton = screen.getByRole("button", { name: "Sections" });
 
     expect(
-      thesis.compareDocumentPosition(metadata) &
+      metadata.compareDocumentPosition(thesis) &
         Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
     expect(

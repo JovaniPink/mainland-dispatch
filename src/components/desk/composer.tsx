@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useMachine } from "@xstate/react";
-import { intakeMachine } from "@/machines/intake-machine";
+import { intakeMachine, type KnownSource } from "@/machines/intake-machine";
 import { DispatchSchema } from "@/content/schema";
 import { verticals } from "@/content/site";
 import { StateLab } from "@/components/state-lab/state-lab";
@@ -90,8 +90,8 @@ function createEmptyForm() {
 
 type ComposerForm = ReturnType<typeof createEmptyForm>;
 
-export function Composer() {
-  const [state, send] = useMachine(intakeMachine);
+export function Composer({ knownSources }: { knownSources: KnownSource[] }) {
+  const [state, send] = useMachine(intakeMachine, { input: { knownSources } });
   const [lastEvent, setLastEvent] = useState<string | null>(null);
   const [history, setHistory] = useState<string[]>([]);
   const [url, setUrl] = useState("");

@@ -19,11 +19,11 @@ const parsed = parseCirculationTwoDomainNotebookEntry({
   slug: legacyWhatGetsThrough.slug,
   title: legacyWhatGetsThrough.title,
   subtitle:
-    "Networked attention and national-security law are different gates on whether culture reaches an audience and public memory remains sayable.",
+    "How does culture reach an audience, and how does public memory remain sayable? Networked attention and national-security law impose different rules, with profoundly different stakes.",
   description:
     "A source-audited inquiry into how networked attention and national-security law shape what reaches an audience or remains publicly sayable.",
   thesis:
-    "Networked attention and national-security law both shape circulation, but by different authority and with radically different stakes: audiences and cinemas allocate attention, while courts assign criminal meaning to political advocacy. The comparison clarifies those mechanics without treating box-office visibility and loss of liberty as morally equivalent.",
+    "Networked attention and national-security law shape circulation through different institutions. Audiences and cinemas allocate attention; courts assign criminal meaning to political advocacy. Comparing their rules helps explain how a film becomes visible and how public remembrance is restricted, while keeping box-office visibility and loss of liberty distinct in their human stakes.",
   frontPagePreview: {
     finding:
       "Culture and public memory move through different institutions: audiences can reverse a film's visibility, while law can narrow the space for political remembrance.",
@@ -35,6 +35,7 @@ const parsed = parseCirculationTwoDomainNotebookEntry({
       "notebook-source-gates-judgment",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: legacyWhatGetsThrough.publishedAt,
   updatedAt: "2026-09-01",
   readTime: "16 min",
@@ -63,8 +64,8 @@ const parsed = parseCirculationTwoDomainNotebookEntry({
     limits: legacyWhatGetsThrough.sections.limits,
     changed: [
       "September 1 correction: the rules-of-origin and transshipment-proof material moved to Inquiry 09, Where Does Origin Change?, with its source identities, chronology, claim checks, and figure preserved.",
-      "Inquiry 06 now uses an explicit two-domain contract for culture and memory. Its initiating audio remains here because this is the canonical publisher-audio experience and no second playback surface was authorized.",
-      "The correction preserves the original URL and publication date. Old trade and source fragments remain as accessible notices that point to the exact companion fragment without redirecting the article or duplicating its citations.",
+      "Inquiry 06 now compares culture and public memory. The original publisher audio remains on this page, where readers can load it by consent.",
+      "The original article URL and publication date are unchanged. Earlier links to trade material and its sources still lead readers to the corresponding passage in the companion inquiry.",
     ],
   },
   unresolvedQuestion:

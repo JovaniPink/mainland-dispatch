@@ -1,5 +1,5 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { NotebookAudioFacade } from "@/components/notebook/notebook-audio-facade";
 import {
   NotebookFormats,
@@ -25,9 +25,9 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
+  ["dashboard", "Eight paired indicators"],
   ["why", "Why this question matters"],
   ["verdict", "The short answer"],
-  ["dashboard", "Eight paired indicators"],
   ["industry", "Industrial power"],
   ["science", "Science and technology"],
   ["leverage", "Military and money"],
@@ -56,6 +56,7 @@ export default function DominanceIsADashboardPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -65,6 +66,26 @@ export default function DominanceIsADashboardPage() {
         readingRule="Compare like with like. Do not add unlike forms of power into one score."
         contentClassName="lg:max-w-[52rem]"
       >
+        <section className="mt-12">
+          <NotebookSectionHeading
+            id="dashboard"
+            eyebrow="Scale, frontier capacity, force, and finance"
+          >
+            The power dashboard
+          </NotebookSectionHeading>
+          <p className="mt-5 text-sm leading-7 text-ink-muted">
+            Each card preserves one unit, one year, and one methodological
+            warning. Longer bars indicate only the larger value inside that
+            card. There is no weighting system and no overall score.
+          </p>
+          <div className="mt-7">
+            <PairedPowerMetrics
+              metrics={entry.comparisons}
+              sources={entry.sourceTrail}
+            />
+          </div>
+        </section>
+
         <section className="mt-12">
           <NotebookSectionHeading id="why" eyebrow="The initiating question">
             Why this question matters
@@ -140,23 +161,6 @@ export default function DominanceIsADashboardPage() {
           </NotebookSectionHeading>
           <div className="mt-6">
             <NotebookProse paragraphs={entry.sections.verdict} />
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <NotebookSectionHeading
-            id="dashboard"
-            eyebrow="Scale, frontier capacity, force, and finance"
-          >
-            The power dashboard
-          </NotebookSectionHeading>
-          <p className="mt-5 text-sm leading-7 text-ink-muted">
-            Each card preserves one unit, one year, and one methodological
-            warning. Longer bars indicate only the larger value inside that
-            card. There is no weighting system and no overall score.
-          </p>
-          <div className="mt-7">
-            <PairedPowerMetrics metrics={entry.comparisons} />
           </div>
         </section>
 
@@ -253,10 +257,10 @@ export default function DominanceIsADashboardPage() {
                 className="flex min-w-0 flex-col border border-rule p-4"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -268,7 +272,7 @@ export default function DominanceIsADashboardPage() {
                 <p className="mt-3 text-sm leading-6 text-ink-muted">
                   {item.assessment}
                 </p>
-                <p className="mt-auto pt-4 font-mono text-[0.58rem] uppercase tracking-widest text-jade">
+                <p className="mt-auto pt-4 font-mono text-xs uppercase tracking-widest text-jade">
                   {item.sourceIds.length} displayed{" "}
                   {item.sourceIds.length === 1 ? "source" : "sources"}
                 </p>
@@ -286,7 +290,10 @@ export default function DominanceIsADashboardPage() {
           actionLabel={`Examine ${entry.sourceTrail.length} sources`}
         >
           <div className="mt-6">
-            <NotebookSourceTrail sources={entry.sourceTrail} />
+            <NotebookSourceTrail
+              headingId="source-ledger"
+              sources={entry.sourceTrail}
+            />
           </div>
         </NotebookSecondarySection>
 
@@ -303,7 +310,7 @@ export default function DominanceIsADashboardPage() {
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -314,7 +321,7 @@ export default function DominanceIsADashboardPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -329,23 +336,7 @@ export default function DominanceIsADashboardPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/archive?view=relationships&inquiry=dominance-is-a-dashboard"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore its source relationships
-          </Link>
-          <Link
-            href="/notebook/open-models-closed-system"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read Notebook Two
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

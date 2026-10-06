@@ -62,7 +62,9 @@ describe("Below Half Is Not Gone Notebook page", () => {
       expect(container.querySelector(`#${source.id}`)).toBeInTheDocument();
     }
     expect(
-      screen.getByRole("link", { name: "Read Inquiry 07" })
+      screen.getByRole("link", {
+        name: /Previous inquiry.*July Is Not One Number/,
+      })
     ).toHaveAttribute("href", "/notebook/july-is-not-one-number");
   });
 

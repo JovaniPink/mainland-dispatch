@@ -1,0 +1,198 @@
+[
+  {
+    "file": "src/content/notebook/below-half-is-not-gone.ts",
+    "field": "subtitle",
+    "original": "Coal fell below half of China's electricity mix while its output and fleet still grew.",
+    "replacement": "Coal fell below half of China's electricity generation. Why did its output and fleet still grow, and what does that tell us about the transition?",
+    "preservedBoundary": "First-half 2026 generation share; no claim of falling absolute output or completed transition."
+  },
+  {
+    "file": "src/content/notebook/below-half-is-not-gone.ts",
+    "field": "thesis",
+    "original": "Coal's 49.7 percent generation share is a real structural milestone, but share, output, installed capacity, and utilization answer different questions: coal can lose share while a larger fleet still generates more electricity, and integration constraints can coexist with rapid renewable growth.",
+    "replacement": "Coal's 49.7 percent generation share marks a structural change, even as coal output and installed capacity grew. Share, output, capacity, and utilization answer different questions. A larger fleet can generate more electricity while losing share and being used less intensively; integration constraints can also coexist with rapid renewable growth.",
+    "preservedBoundary": "Preserves structural milestone, independent measures, growing output and fleet, declining utilization, and bounded integration interpretation; no new causal estimate."
+  },
+  {
+    "file": "src/content/notebook/the-arctic-is-not-a-shortcut.ts",
+    "field": "description",
+    "original": "A source-audited explanation of the Northern Sea Route's seasonal scale, operating constraints, Russian governance, environmental rules, and unresolved voyage evidence.",
+    "replacement": "A shorter Arctic route raises a harder question: can seasonal sailings become dependable service? Examine the scale, operating constraints, and unresolved voyage evidence.",
+    "preservedBoundary": "A question, not a claim of dependable or completed service; existing source limits retained."
+  },
+  {
+    "file": "src/content/notebook/what-xi-jinping-wants.ts",
+    "field": "subtitle",
+    "original": "Following Kevin Rudd’s argument into its sources, complications, and unresolved questions.",
+    "replacement": "Kevin Rudd argues that ideology helps explain Xi Jinping's choices. What does that model illuminate, and where do interpretation and prediction outrun the evidence?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/what-xi-jinping-wants.ts",
+    "field": "thesis",
+    "original": "Xi Jinping's ideological language deserves to be treated as part of the machinery of rule, not dismissed as ceremony. It is still a disciplined hypothesis rather than a master key: public doctrine, institutional action, observed outcomes, and imagined futures must remain separate layers of evidence.",
+    "replacement": "Kevin Rudd's model treats Xi Jinping's ideological language as part of how he governs. That is a useful hypothesis to examine, rather than a complete explanation of his choices. Public doctrine, institutional action, observed outcomes, and imagined futures remain separate kinds of evidence; none gives direct access to a leader's mind.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/open-models-closed-system.ts",
+    "field": "subtitle",
+    "original": "What kind of technological openness is China offering, who benefits from it, what dependencies accompany it, and where does that openness stop?",
+    "replacement": "China offers open AI models and international cooperation through a politically controlled system. Who benefits, what dependencies follow, and where does the openness end?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/open-models-closed-system.ts",
+    "field": "thesis",
+    "original": "China’s open-AI strategy is neither altruistic openness nor simple deception. It offers real technical and institutional goods through a politically controlled system; the decisive questions are where that openness ends, what dependencies it creates, and who governs the resulting order.",
+    "replacement": "China's open-AI strategy offers real technical and institutional goods through a politically controlled system. Its openness has limits, and its benefits can bring dependencies. The question is how those offers work in practice: what has been delivered, what remains a promise, and who governs the resulting order.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/dominance-is-a-dashboard.ts",
+    "field": "subtitle",
+    "original": "China has passed the United States in industrial scale and several strategic supply chains. That is not the same thing as inheriting one all-purpose title of global dominance.",
+    "replacement": "China leads in industrial scale and several strategic supply chains. How do those advantages compare with American financial, military, and technological strengths?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/routing-around-risk.ts",
+    "field": "subtitle",
+    "original": "China's response to the Hormuz and Red Sea crisis is a portfolio of inventories, pipelines, tanker handoffs, selective passage, and supplier relationships. Every workaround relocates risk rather than removing it.",
+    "replacement": "Inventories, pipelines, tanker handoffs, and supplier relationships help China manage disrupted maritime routes. Which risks does each workaround reduce, and where does the exposure move?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/routing-around-risk.ts",
+    "field": "thesis",
+    "original": "China is not escaping maritime chokepoints. It is distributing exposure across estimated oil inventories, pipeline capacity, offshore cargo handoffs, state-linked shipping, supplier diversity, and selective passage. Those measures buy time and relocate risk; none replaces the energy function of Hormuz or the container scale of Suez.",
+    "replacement": "China distributes maritime exposure across estimated oil inventories, pipeline capacity, offshore cargo handoffs, state-linked shipping, supplier diversity, and selective passage. These measures can buy time and move risk between routes and institutions. They do not replace the energy function of Hormuz or the container scale of Suez.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/who-absorbs-the-shock.ts",
+    "field": "subtitle",
+    "original": "A renewed Chinese export surge travels through households, factories, trade balances, foreign markets, and local labor systems. Each stage distributes gains and losses differently.",
+    "replacement": "A renewed Chinese export surge moves through households, factories, foreign markets, and local labor systems. Who gains, who pays, and which problems can policy address?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/who-absorbs-the-shock.ts",
+    "field": "thesis",
+    "original": "China Shock 2.0 names a large and uneven adjustment, not one cause or one verdict. Its benefits and costs reach different groups through five stages, so any policy claim must identify the problem it targets, who pays, and what the evidence does not establish.",
+    "replacement": "China Shock 2.0 describes a large and uneven adjustment. Benefits and costs reach different groups through five stages, from domestic demand and production to foreign markets and local workers. A useful policy claim identifies the problem it targets, who bears the cost, and what the evidence can establish.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/what-gets-through.ts",
+    "field": "subtitle",
+    "original": "Networked attention and national-security law are different gates on whether culture reaches an audience and public memory remains sayable.",
+    "replacement": "How does culture reach an audience, and how does public memory remain sayable? Networked attention and national-security law impose different rules, with profoundly different stakes.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/what-gets-through.ts",
+    "field": "thesis",
+    "original": "Networked attention and national-security law both shape circulation, but by different authority and with radically different stakes: audiences and cinemas allocate attention, while courts assign criminal meaning to political advocacy. The comparison clarifies those mechanics without treating box-office visibility and loss of liberty as morally equivalent.",
+    "replacement": "Networked attention and national-security law shape circulation through different institutions. Audiences and cinemas allocate attention; courts assign criminal meaning to political advocacy. Comparing their rules helps explain how a film becomes visible and how public remembrance is restricted, while keeping box-office visibility and loss of liberty distinct in their human stakes.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/july-is-not-one-number.ts",
+    "field": "subtitle",
+    "original": "Six releases describe different parts of one month, on different clocks, with different definitions.",
+    "replacement": "July's economic releases point in different directions. What do six indicators reveal when their observation periods, populations, and comparison bases stay attached?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/july-is-not-one-number.ts",
+    "field": "thesis",
+    "original": "July's releases show industrial resilience alongside property contraction and soft household demand, but their periods, populations, price bases, and methods differ too much to collapse into a single verdict about China's economy.",
+    "replacement": "July's releases show industrial resilience alongside property contraction and soft household demand. Each indicator measures a different population, period, or comparison, so their movements cannot be added into one verdict. Reading them separately preserves the distinction between an observed change, the government's characterization, and an analyst's explanation.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/where-does-origin-change.ts",
+    "field": "subtitle",
+    "original": "Crossing a border changes admission status. It does not, by itself, change where a product originates.",
+    "replacement": "A vehicle can enter Canada without becoming Canadian-origin. What evidence separates border admission from production, origin qualification, and the trade treatment available at US entry?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/where-does-origin-change.ts",
+    "field": "thesis",
+    "original": "A vehicle admitted to Canada does not become Canadian-origin merely by crossing the border. Production, product-specific USMCA qualification, certification, and US entry are separate proof gates; the reviewed public record documents aggregate Canadian admission but not a quota vehicle that completed the later gates or violated customs law.",
+    "replacement": "Admission to Canada does not establish Canadian origin. Production, product-specific USMCA qualification, certification, and US entry each require separate evidence. The reviewed public record documents aggregate Canadian admission; it does not identify a quota vehicle that completed those later steps or establish that one violated customs law.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/the-arctic-is-not-a-shortcut.ts",
+    "field": "subtitle",
+    "original": "A shorter advertised distance does not create a dependable corridor. Ice, Russian administration, rescue capacity, insurance, sanctions, vessel capability, and environmental rules remain part of every sailing.",
+    "replacement": "A shorter Arctic route promises faster container journeys. Can seasonal sailings become dependable service, and what do the public records actually establish about their scale?",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/the-arctic-is-not-a-shortcut.ts",
+    "field": "thesis",
+    "original": "The Northern Sea Route is a bounded seasonal container corridor, not a reliable substitute for Hormuz energy flows or Suez-scale container traffic. A shorter advertised distance still depends on ice conditions, Russian administration and rescue capacity, insurance, sanctions, vessel capability, and environmental rules, while a planned or departed voyage remains different from completed and repeatable service.",
+    "replacement": "The Northern Sea Route supports a small seasonal container experiment under ice, Russian-administration, insurance, sanctions, vessel, and environmental constraints. It cannot be read as a reliable substitute for Hormuz energy flows or Suez-scale container traffic. A schedule or reported departure still does not establish completed transit or repeatable service.",
+    "preservedBoundary": "Condenses the existing opening only. Attribution, uncertainty, reviewed source and claim inventories, evidence classifications, and the original evidence-review date remain unchanged."
+  },
+  {
+    "file": "src/content/notebook/the-arctic-is-not-a-shortcut.ts",
+    "field": "sections.changed",
+    "original": "September 1 commission: Inquiry 04's Arctic route, points, scale measures, chronology, source records, turning point, and claim audits moved here as one custody unit.",
+    "replacement": "On September 1, the Arctic material became a separate inquiry. Its route, measurements, chronology, sources, and claim review moved together from Inquiry 04.",
+    "preservedBoundary": "Editorial explanation only; preserves migration identity, dated additions, and the boundary between admitted article sources and later research. Historical snapshots are unchanged."
+  },
+  {
+    "file": "src/content/notebook/the-arctic-is-not-a-shortcut.ts",
+    "field": "sections.changed",
+    "original": "The split preserves shared Al Jazeera and Guardian source identities while giving each publication scope-specific context. Moved source and knowledge identities retain their predecessor IDs.",
+    "replacement": "Both inquiries still cite the same Al Jazeera and Guardian records, with context specific to each article. Existing source identifiers and links remain valid.",
+    "preservedBoundary": "Editorial explanation only; preserves migration identity, dated additions, and the boundary between admitted article sources and later research. Historical snapshots are unchanged."
+  },
+  {
+    "file": "src/content/notebook/the-arctic-is-not-a-shortcut.ts",
+    "field": "sections.changed",
+    "original": "The publication refresh found a later August 19 final-China-port departure report but no public arrival or completed-transit record. That URL remains dated research-addendum context and is not silently admitted to this article's closed source cohort.",
+    "replacement": "The publication refresh found a later report of departure from the final Chinese port on August 19, but no public arrival or completed-transit record. The later report remains in the dated research addendum, outside the sources reviewed for this article.",
+    "preservedBoundary": "Editorial explanation only; preserves migration identity, dated additions, and the boundary between admitted article sources and later research. Historical snapshots are unchanged."
+  },
+  {
+    "file": "src/content/notebook/where-does-origin-change.ts",
+    "field": "sections.changed",
+    "original": "Two post-migration primary records were admitted as a separate cohort: Notice 1168 and the quota utilization report. They add observed admission scope and a derived second-period capacity without changing the later proof gates.",
+    "replacement": "Two primary records were reviewed after the article split: Notice 1168 and the quota utilization report. They clarify observed admission and the calculation of second-period capacity. They do not establish production, origin qualification, or US entry.",
+    "preservedBoundary": "Editorial explanation only; preserves migration identity, dated additions, and the boundary between admitted article sources and later research. Historical snapshots are unchanged."
+  },
+  {
+    "file": "src/content/notebook/what-gets-through.ts",
+    "field": "sections.changed",
+    "original": "Inquiry 06 now uses an explicit two-domain contract for culture and memory. Its initiating audio remains here because this is the canonical publisher-audio experience and no second playback surface was authorized.",
+    "replacement": "Inquiry 06 now compares culture and public memory. The original publisher audio remains on this page, where readers can load it by consent.",
+    "preservedBoundary": "Explains the existing article split and consent behavior in public language; no source, historical snapshot, or compatibility-link changes."
+  },
+  {
+    "file": "src/content/notebook/what-gets-through.ts",
+    "field": "sections.changed",
+    "original": "The correction preserves the original URL and publication date. Old trade and source fragments remain as accessible notices that point to the exact companion fragment without redirecting the article or duplicating its citations.",
+    "replacement": "The original article URL and publication date are unchanged. Earlier links to trade material and its sources still lead readers to the corresponding passage in the companion inquiry.",
+    "preservedBoundary": "Explains the existing article split and consent behavior in public language; no source, historical snapshot, or compatibility-link changes."
+  },
+  {
+    "file": "src/content/notebook/routing-around-risk.ts",
+    "field": "sections.changed",
+    "original": "Inquiry 04 now uses a non-Arctic portfolio contract for Hormuz, the Gulf of Oman, Saudi and Emirati bypass pipelines, Bab el-Mandeb, and Suez. The map implementation and privacy boundary are shared, but this page exposes only portfolio, Gulf, and Red Sea lenses.",
+    "replacement": "Inquiry 04 now focuses on Hormuz, the Gulf of Oman, Saudi and Emirati bypass pipelines, Bab el-Mandeb, and Suez. Its map covers the Gulf and Red Sea workarounds; the Arctic route has its own inquiry. Both maps load only after consent.",
+    "preservedBoundary": "Explains the existing article split and consent behavior in public language; no source, historical snapshot, or compatibility-link changes."
+  },
+  {
+    "file": "src/content/notebook/routing-around-risk.ts",
+    "field": "sections.changed",
+    "original": "The correction preserves the original URL and publication date. Old Arctic and moved-source fragments remain as accessible notices that point to the exact companion fragments without redirecting the article or duplicating its citations.",
+    "replacement": "The original article URL and publication date are unchanged. Earlier links to Arctic material and its sources still lead readers to the corresponding passage in the companion inquiry.",
+    "preservedBoundary": "Explains the existing article split and consent behavior in public language; no source, historical snapshot, or compatibility-link changes."
+  }
+]

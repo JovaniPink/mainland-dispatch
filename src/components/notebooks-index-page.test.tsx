@@ -11,7 +11,7 @@ describe("Notebooks index", () => {
     expect(screen.getByTestId("notebook-index-latest")).toHaveTextContent(
       "The Arctic Is Not a Shortcut"
     );
-    expect(screen.getAllByTestId("notebook-index-entry")).toHaveLength(10);
+    expect(screen.getAllByTestId("notebook-index-entry")).toHaveLength(9);
     expect(screen.getByText("Who Absorbs the Shock?")).toBeInTheDocument();
     expect(
       container.querySelector('script[type="application/ld+json"]')?.textContent

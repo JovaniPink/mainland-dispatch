@@ -71,7 +71,7 @@ export function MapDialog({
     >
       <div className="flex items-start justify-between gap-6 border-b border-rule px-4 py-4 sm:px-6">
         <div>
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             Optional geographic context
           </p>
           <h2 id="atlas-map-dialog-title" className="mt-1 font-serif text-2xl">
@@ -94,7 +94,7 @@ export function MapDialog({
 
       <div className="grid lg:grid-cols-[19rem_minmax(0,1fr)]">
         <aside className="border-b border-rule p-4 lg:border-r lg:border-b-0 sm:p-5">
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+          <p className="font-mono text-xs uppercase tracking-widest text-signal">
             Location controls
           </p>
           <ul
@@ -114,7 +114,7 @@ export function MapDialog({
                   }`}
                 >
                   <span className="font-serif">{place.label}</span>
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                  <span className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {place.precision}
                   </span>
                 </button>
@@ -122,14 +122,14 @@ export function MapDialog({
             ))}
           </ul>
           <div className="mt-5 border-t border-rule pt-4">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+            <p className="font-mono text-xs uppercase tracking-widest text-jade">
               Relationship legend
             </p>
             <ul className="mt-2 space-y-2 text-sm">
               {relations.map((relation) => (
                 <li key={relation.id} className="border-l-2 border-jade pl-3">
                   <span className="font-serif">{relation.label}</span>
-                  <span className="mt-0.5 block font-mono text-[0.58rem] uppercase tracking-widest text-ink-muted">
+                  <span className="mt-0.5 block font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {relation.kind.replaceAll("-", " ")}
                   </span>
                 </li>
@@ -145,7 +145,7 @@ export function MapDialog({
                 "Select a named place to focus the map without changing the evidence claim."}
             </p>
           </div>
-          <p className="mt-5 font-mono text-[0.6rem] uppercase leading-relaxed tracking-widest text-ink-muted">
+          <p className="mt-5 font-mono text-xs uppercase leading-relaxed tracking-widest text-ink-muted">
             External source · OpenFreeMap · no inferred routes
           </p>
         </aside>
@@ -218,7 +218,7 @@ export function MapDialog({
             </div>
           )}
 
-          <p className="absolute right-2 bottom-2 left-2 z-10 bg-paper/90 px-2 py-1 text-center font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+          <p className="absolute right-2 bottom-2 left-2 z-10 bg-paper/90 px-2 py-1 text-center font-mono text-xs uppercase tracking-widest text-ink-muted">
             Source-backed relationship; not a physical or inferred route
           </p>
         </div>

@@ -1,5 +1,5 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CirculationGatesFigure } from "@/components/notebook/circulation-gates-figure";
 import { NotebookAudioFacade } from "@/components/notebook/notebook-audio-facade";
 import {
@@ -14,10 +14,7 @@ import {
   NotebookSecondarySection,
 } from "@/components/notebook/notebook-reader";
 import { NotebookStatus } from "@/components/notebook/notebook-status";
-import {
-  NotebookCompanionLinks,
-  NotebookLegacyFragmentNotices,
-} from "@/components/notebook/notebook-custody-links";
+import { NotebookLegacyFragmentNotices } from "@/components/notebook/notebook-custody-links";
 import { JsonLd } from "@/components/seo/json-ld";
 import { evidenceStatusLabels } from "@/content/dossiers";
 import { whatGetsThrough as entry } from "@/content/notebook/what-gets-through";
@@ -53,6 +50,7 @@ export default function WhatGetsThroughPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -69,12 +67,15 @@ export default function WhatGetsThroughPage() {
           >
             The circulation lens
           </NotebookSectionHeading>
-          <div className="mt-6">
-            <NotebookProse paragraphs={entry.sections.lens} />
-          </div>
 
           <div className="mt-9">
-            <CirculationGatesFigure gates={entry.gates} />
+            <CirculationGatesFigure
+              gates={entry.gates}
+              sources={entry.sourceTrail}
+            />
+          </div>
+          <div className="mt-6">
+            <NotebookProse paragraphs={entry.sections.lens} />
           </div>
 
           <div className="mt-10">
@@ -156,7 +157,7 @@ export default function WhatGetsThroughPage() {
           </div>
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
             <article className="border border-jade bg-jade-soft/25 p-5">
-              <p className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+              <p className="font-mono text-xs uppercase tracking-widest text-jade">
                 Verified reversal - August 17
               </p>
               <p className="mt-3 font-serif text-xl leading-relaxed">
@@ -166,7 +167,7 @@ export default function WhatGetsThroughPage() {
               </p>
             </article>
             <article className="border border-signal bg-signal-soft/25 p-5">
-              <p className="font-mono text-[0.6rem] uppercase tracking-widest text-signal">
+              <p className="font-mono text-xs uppercase tracking-widest text-signal">
                 Corrected comparison - August 16
               </p>
               <p className="mt-3 font-serif text-xl leading-relaxed">
@@ -215,10 +216,10 @@ export default function WhatGetsThroughPage() {
                 className="flex min-w-0 flex-col border border-rule p-4"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -230,7 +231,7 @@ export default function WhatGetsThroughPage() {
                 <p className="mt-3 text-sm leading-6 text-ink-muted">
                   {item.assessment}
                 </p>
-                <p className="mt-auto pt-4 font-mono text-[0.58rem] uppercase tracking-widest text-jade">
+                <p className="mt-auto pt-4 font-mono text-xs uppercase tracking-widest text-jade">
                   {item.sourceIds.length} displayed{" "}
                   {item.sourceIds.length === 1 ? "source" : "sources"}
                 </p>
@@ -253,7 +254,10 @@ export default function WhatGetsThroughPage() {
                 fragment.id.startsWith("notebook-source-")
               )}
             />
-            <NotebookSourceTrail sources={entry.sourceTrail} />
+            <NotebookSourceTrail
+              headingId="source-ledger"
+              sources={entry.sourceTrail}
+            />
           </div>
         </NotebookSecondarySection>
 
@@ -266,13 +270,11 @@ export default function WhatGetsThroughPage() {
           </div>
         </section>
 
-        <NotebookCompanionLinks relationships={entry.relatedNotebooks ?? []} />
-
         <section
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -283,7 +285,7 @@ export default function WhatGetsThroughPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -298,23 +300,7 @@ export default function WhatGetsThroughPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/archive?view=relationships&inquiry=what-gets-through"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore its source relationships
-          </Link>
-          <Link
-            href="/notebook/who-absorbs-the-shock"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read Inquiry 05
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

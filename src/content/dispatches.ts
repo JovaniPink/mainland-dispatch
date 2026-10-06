@@ -1,5 +1,11 @@
+import "server-only";
 import { z } from "zod";
-import { DispatchSchema, type Dispatch, type DispatchKind } from "./schema";
+import {
+  DispatchSchema,
+  type Dispatch,
+  type DispatchKind,
+  type PublicDispatch,
+} from "./schema";
 import { sourceLeads } from "./source-leads";
 
 type DispatchSeed = Record<string, unknown> & {
@@ -761,6 +767,21 @@ export function isPublicDispatch(dispatch: Dispatch): boolean {
 }
 
 export const publishedDispatches = dispatches.filter(isPublicDispatch);
+
+const publicProjections = new WeakMap<Dispatch, PublicDispatch>();
+
+/**
+ * Strips the private source-lead link before a Dispatch becomes a client prop.
+ * Projections are memoized so one record keeps one identity in RSC payloads.
+ */
+export function toPublicDispatch(dispatch: Dispatch): PublicDispatch {
+  const cached = publicProjections.get(dispatch);
+  if (cached) return cached;
+  const projection: Partial<Dispatch> = { ...dispatch };
+  delete projection.sourceLeadId;
+  publicProjections.set(dispatch, projection as PublicDispatch);
+  return projection as PublicDispatch;
+}
 
 export function getDispatch(slug: string): Dispatch | undefined {
   return dispatches.find((d) => d.slug === slug);

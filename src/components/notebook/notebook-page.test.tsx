@@ -48,7 +48,7 @@ describe("What Xi Jinping Wants Notebook page", () => {
 
     expect(
       screen.getByRole("link", {
-        name: "Read Inquiry 02",
+        name: /Next inquiry.*Open Models/,
       })
     ).toHaveAttribute("href", "/notebook/open-models-closed-system");
     expect(screen.queryByRole("link", { name: /source lab/i })).toBeNull();

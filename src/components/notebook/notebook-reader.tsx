@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { correctionUrl } from "@/lib/corrections";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { NotebookShare } from "@/components/notebook/notebook-share";
+import { SaveButton } from "@/components/dispatch/save-button";
 import { formatDate } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +17,7 @@ type NotebookReaderShellProps = {
   thesis: string;
   publishedAt: string;
   updatedAt: string;
+  presentationUpdatedAt?: string;
   readTime: string;
   tags: string[];
   editorialLabel: string;
@@ -51,7 +55,7 @@ function SectionList({
                 activeId === id && "text-signal"
               )}
             >
-              <span className="mr-2 font-mono text-[0.6rem] text-jade">
+              <span className="mr-2 font-mono text-xs text-jade">
                 {String(index + 1).padStart(2, "0")}
               </span>
               {sectionLabel}
@@ -70,6 +74,7 @@ export function NotebookReaderShell({
   thesis,
   publishedAt,
   updatedAt,
+  presentationUpdatedAt,
   readTime,
   tags,
   editorialLabel,
@@ -146,33 +151,24 @@ export function NotebookReaderShell({
           <h1 className="mt-3 max-w-5xl font-serif text-4xl leading-[1.05] sm:text-6xl">
             {title}
           </h1>
-          <p className="mt-4 max-w-4xl font-serif text-lg italic leading-relaxed text-ink-muted sm:text-2xl">
+          <p className="mt-4 max-w-4xl font-serif text-lg leading-relaxed text-ink-muted sm:text-xl">
             {subtitle}
           </p>
-          <section
-            data-testid="working-thesis"
-            aria-labelledby="working-thesis-label"
-            className="mt-6 max-w-4xl border-y border-rule bg-jade-soft/25 px-4 py-5 sm:px-5"
-          >
-            <h2
-              id="working-thesis-label"
-              className="font-mono text-[0.6rem] uppercase tracking-widest text-jade"
-            >
-              Working thesis
-            </h2>
-            <p className="mt-3 font-serif text-lg italic leading-relaxed sm:text-xl">
-              {thesis}
-            </p>
-          </section>
           <div
             data-testid="notebook-metadata"
-            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.62rem] uppercase tracking-widest text-ink-muted"
+            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs uppercase tracking-widest text-ink-muted"
           >
             <span>{formatDate(publishedAt)}</span>
             <span aria-hidden>-</span>
             <span>{readTime}</span>
             <span aria-hidden>-</span>
             <span>{editorialLabel}</span>
+            <Link
+              href="/about"
+              className="text-signal underline underline-offset-4"
+            >
+              Edited by Jovani Pink
+            </Link>
             {updatedAt !== publishedAt && (
               <>
                 <span aria-hidden>-</span>
@@ -180,30 +176,53 @@ export function NotebookReaderShell({
               </>
             )}
           </div>
+          {presentationUpdatedAt && (
+            <p className="mt-3 text-sm text-ink-muted">
+              Presentation updated {formatDate(presentationUpdatedAt)}. Evidence
+              review date unchanged.
+            </p>
+          )}
           <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
             <ul className="flex flex-wrap gap-2" aria-label="Topics">
               {tags.map((tag) => (
                 <li
                   key={tag}
-                  className="border border-rule px-2 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted"
+                  className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted"
                 >
                   {tag}
                 </li>
               ))}
             </ul>
+            <SaveButton
+              target={{ kind: "notebook", id: path.split("/").pop()! }}
+              title={title}
+            />
             <NotebookShare title={title} path={path} campaign={campaign} />
           </div>
+          <section
+            data-testid="working-thesis"
+            aria-labelledby="working-thesis-label"
+            className="mt-6 max-w-[70ch] border-t border-rule pt-5"
+          >
+            <h2
+              id="working-thesis-label"
+              className="font-mono text-xs uppercase tracking-widest text-jade"
+            >
+              Working thesis
+            </h2>
+            <p className="mt-3 font-serif text-lg leading-[1.65]">{thesis}</p>
+          </section>
         </div>
       </header>
 
       <div className="sticky top-0 z-30 border-b border-rule bg-paper/95 backdrop-blur-sm lg:hidden">
         <div
           aria-hidden="true"
-          className="h-0.5 bg-signal"
+          className="h-0.5 bg-signal-fill"
           style={{ width: `${progress}%` }}
         />
         <div className="flex min-h-11 items-center justify-between gap-3 px-4 py-2">
-          <p className="min-w-0 truncate font-mono text-[0.62rem] uppercase tracking-widest text-ink-muted">
+          <p className="min-w-0 truncate font-mono text-xs uppercase tracking-widest text-ink-muted">
             {activeLabel}
           </p>
           <button
@@ -211,7 +230,7 @@ export function NotebookReaderShell({
             aria-expanded={sectionsOpen}
             aria-controls="mobile-notebook-sections"
             onClick={() => setSectionsOpen((value) => !value)}
-            className="shrink-0 border border-rule px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-widest hover:border-signal"
+            className="shrink-0 border border-rule px-3 py-1.5 font-mono text-xs uppercase tracking-widest hover:border-signal"
           >
             Sections
           </button>
@@ -219,7 +238,7 @@ export function NotebookReaderShell({
         {sectionsOpen && (
           <div
             id="mobile-notebook-sections"
-            className="border-t border-rule bg-paper px-4 py-4"
+            className="max-h-[60dvh] overflow-y-auto border-t border-rule bg-paper px-4 py-4"
           >
             <SectionList
               sections={sections}
@@ -233,7 +252,7 @@ export function NotebookReaderShell({
 
       <div className="grid gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[11rem_minmax(0,1fr)] lg:justify-between lg:gap-12">
         <aside className="hidden self-start lg:sticky lg:top-5 lg:block">
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             In this inquiry
           </p>
           <div className="mt-3">
@@ -244,7 +263,7 @@ export function NotebookReaderShell({
             />
           </div>
           <div className="mt-6 border-l-2 border-signal bg-signal-soft/30 p-3">
-            <p className="font-mono text-[0.6rem] uppercase tracking-widest text-signal">
+            <p className="font-mono text-xs uppercase tracking-widest text-signal">
               {readingRuleLabel}
             </p>
             <p className="mt-2 font-serif text-sm italic leading-relaxed">
@@ -258,6 +277,20 @@ export function NotebookReaderShell({
           className={cn("min-w-0 w-full justify-self-end", contentClassName)}
         >
           {children}
+          <footer className="mt-10 border-t border-rule pt-5 text-sm leading-6 text-ink-muted">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={correctionUrl(path, title)}
+              className="text-signal underline underline-offset-4"
+            >
+              Suggest a correction
+            </a>
+            <p>
+              Submissions are public and require GitHub. You review and submit
+              the issue yourself.
+            </p>
+          </footer>
         </div>
       </div>
     </>
@@ -335,7 +368,7 @@ export function NotebookSecondarySection({
           aria-hidden="true"
         />
       ))}
-      <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+      <p className="font-mono text-xs uppercase tracking-widest text-jade">
         {eyebrow}
       </p>
       <h2 className="mt-2 font-serif text-3xl leading-tight">{title}</h2>
@@ -351,7 +384,7 @@ export function NotebookSecondarySection({
           onClick={() => {
             userChanged.current = true;
           }}
-          className="cursor-pointer py-3 font-mono text-[0.65rem] uppercase tracking-widest text-signal"
+          className="cursor-pointer py-3 font-mono text-xs uppercase tracking-widest text-signal"
         >
           {open ? "Hide detail" : actionLabel}
         </summary>

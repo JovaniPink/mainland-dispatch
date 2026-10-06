@@ -1,0 +1,32 @@
+name: Suggest a correction
+description: Flag a passage and provide supporting public sources.
+title: "Correction: "
+body:
+  - type: markdown
+    attributes:
+      value: "This submission is public and requires a GitHub account. Do not include private information."
+  - type: input
+    id: article-url
+    attributes:
+      label: Article URL
+    validations:
+      required: true
+  - type: textarea
+    id: disputed-passage
+    attributes:
+      label: Disputed passage
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-correction
+    attributes:
+      label: Proposed correction
+    validations:
+      required: true
+  - type: textarea
+    id: supporting-sources
+    attributes:
+      label: Supporting sources
+      description: Link to the public records that support the proposed correction.
+    validations:
+      required: true

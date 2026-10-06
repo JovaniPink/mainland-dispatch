@@ -1,8 +1,13 @@
 import { assign, setup } from "xstate";
 import { DispatchSchema } from "@/content/schema";
-import { dispatches } from "@/content/dispatches";
+
+/** Existing canonical source URLs, supplied by the server for duplicate checks. */
+export type KnownSource = { id: string; url: string };
+
+export type IntakeInput = { knownSources?: KnownSource[] };
 
 export type IntakeContext = {
+  knownSources: KnownSource[];
   url: string;
   draft: Record<string, unknown>;
   validationErrors: string[];
@@ -28,7 +33,10 @@ function validateDraft(draft: Record<string, unknown>): string[] {
   );
 }
 
-function findDuplicate(draft: Record<string, unknown>): string | null {
+function findDuplicate(
+  draft: Record<string, unknown>,
+  knownSources: KnownSource[]
+): string | null {
   const canonicalSource = draft.canonicalSource;
   const url =
     canonicalSource &&
@@ -37,7 +45,7 @@ function findDuplicate(draft: Record<string, unknown>): string | null {
     typeof canonicalSource.url === "string"
       ? canonicalSource.url
       : "";
-  const hit = dispatches.find((d) => d.canonicalSource.url === url);
+  const hit = knownSources.find((source) => source.url === url);
   return hit ? hit.id : null;
 }
 
@@ -46,17 +54,19 @@ export const intakeMachine = setup({
   types: {
     context: {} as IntakeContext,
     events: {} as IntakeEvent,
+    input: {} as IntakeInput,
   },
 }).createMachine({
   id: "intake",
   initial: "idle",
-  context: {
+  context: ({ input }) => ({
+    knownSources: input?.knownSources ?? [],
     url: "",
     draft: {},
     validationErrors: [],
     duplicateOf: null,
     savedJson: null,
-  },
+  }),
   states: {
     idle: {
       on: {
@@ -109,10 +119,12 @@ export const intakeMachine = setup({
     duplicateCheck: {
       always: [
         {
-          guard: ({ context }) => findDuplicate(context.draft) !== null,
+          guard: ({ context }) =>
+            findDuplicate(context.draft, context.knownSources) !== null,
           target: "possibleDuplicate",
           actions: assign({
-            duplicateOf: ({ context }) => findDuplicate(context.draft),
+            duplicateOf: ({ context }) =>
+              findDuplicate(context.draft, context.knownSources),
           }),
         },
         { target: "editing" },

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SaveButton } from "@/components/dispatch/save-button";
 import type { Metadata } from "next";
 import type { Dispatch } from "@/content/schema";
 import { publishedDispatches } from "@/content/dispatches";
@@ -48,7 +49,7 @@ function selectArchiveRecords(): Dispatch[] {
 }
 
 const primaryLinkClass =
-  "inline-flex border border-ink bg-ink px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal";
+  "inline-flex border border-ink bg-ink px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal-fill hover:text-[#f3f0e8]";
 
 const secondaryLinkClass =
   "inline-flex border border-rule px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-signal hover:text-signal";
@@ -97,88 +98,37 @@ export default function HomePage() {
     <div>
       <section
         data-testid="home-introduction"
-        className="grid gap-8 border-b border-rule px-4 py-9 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,1.7fr)_minmax(18rem,0.8fr)] lg:gap-14 lg:py-16"
+        className="border-b border-rule px-4 py-5 sm:px-6 sm:py-7"
       >
-        <div className="max-w-3xl">
-          <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-signal">
-            A public research notebook
-          </p>
-          <h1 className="mt-4 max-w-[20ch] font-serif text-4xl leading-[1.02] sm:text-6xl">
-            Contemporary China, examined in public.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-ink-muted sm:text-lg sm:leading-8">
-            Follow consequential arguments through primary records, reporting,
-            data, and competing interpretations. Every inquiry shows its
-            sources, limits, and open questions.
-          </p>
-        </div>
-
-        <nav
-          aria-label="Ways into Mainland Dispatch"
-          data-testid="home-entry-points"
-          className="border-t-2 border-jade pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-1"
-        >
-          <p className="font-mono text-[0.68rem] uppercase tracking-widest text-jade">
-            Start here
-          </p>
-          <ol className="mt-4 divide-y divide-rule border-y border-rule">
-            {homeEntryPoints.map((entry) => (
-              <li key={entry.number}>
-                <Link
-                  href={entry.href}
-                  className="group grid grid-cols-[2rem_1fr] gap-3 py-4"
-                >
-                  <span className="font-mono text-[0.65rem] text-signal">
-                    {entry.number}
-                  </span>
-                  <span>
-                    <span className="block font-serif text-xl group-hover:text-signal">
-                      {entry.title}
-                    </span>
-                    <span className="mt-1 hidden text-xs leading-5 text-ink-muted sm:block">
-                      {entry.description}
-                    </span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <h1 className="font-serif text-2xl leading-tight sm:text-3xl">
+          Contemporary China, examined in public.
+        </h1>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-muted">
+          Arguments, evidence, and open questions in a public research notebook.
+        </p>
       </section>
 
       <section
         data-testid="latest-inquiry"
-        className="border-b border-rule px-4 py-9 sm:px-6 sm:py-12"
+        className="border-b border-rule px-4 py-6 sm:px-6 sm:py-10"
       >
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-jade">
-              Latest Notebook
-            </p>
-            <p className="mt-2 font-serif text-xl text-ink-muted">
-              Start with the current inquiry
-            </p>
-          </div>
-          <Link
-            href="/notebooks"
-            className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
-          >
-            Browse all Notebooks -&gt;
-          </Link>
-        </div>
-
-        <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(17rem,1fr)] lg:items-start lg:gap-10">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(17rem,1fr)] lg:items-start lg:gap-10">
           <article className="max-w-3xl">
             <p className="font-mono text-xs uppercase tracking-widest text-signal">
               Inquiry {String(notebook.ordinal).padStart(2, "0")}
             </p>
             <h2 className="mt-3 font-serif text-4xl leading-[1.03] sm:text-6xl">
-              {notebook.title}
+              <Link
+                href={`/notebook/${notebook.slug}`}
+                className="hover:text-signal"
+              >
+                {notebook.title}
+              </Link>
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-ink-muted sm:text-lg sm:leading-8">
-              {notebook.subtitle}
+              {notebook.description}
             </p>
-            <p className="mt-4 font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+            <p className="mt-4 font-mono text-xs uppercase tracking-widest text-jade">
               {formatDate(notebook.publishedAt)} / {notebook.readTime} /{" "}
               {notebook.sourceTrail.length} source stops
             </p>
@@ -193,8 +143,12 @@ export default function HomePage() {
                 href={`/notebook/${notebook.slug}#sources`}
                 className={secondaryLinkClass}
               >
-                Examine the sources
+                Sources
               </Link>
+              <SaveButton
+                target={{ kind: "notebook", id: notebook.slug }}
+                title={notebook.title}
+              />
             </div>
           </article>
 
@@ -203,7 +157,7 @@ export default function HomePage() {
             className="border-l-2 border-signal bg-signal-soft/30 p-5"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+              <p className="font-mono text-xs uppercase tracking-widest text-signal">
                 What the inquiry finds
               </p>
               <NotebookStatus status={notebook.frontPagePreview.status} />
@@ -224,7 +178,7 @@ export default function HomePage() {
                   href={source.links[0].url}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-[0.65rem] uppercase tracking-widest text-signal hover:text-ink"
+                  className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
                 >
                   {source.publisher}: {source.links[0].label} -&gt;
                 </a>
@@ -233,6 +187,35 @@ export default function HomePage() {
           </aside>
         </div>
       </section>
+
+      <nav
+        aria-label="Ways into Mainland Dispatch"
+        data-testid="home-entry-points"
+        className="border-b border-rule px-4 py-5 sm:px-6"
+      >
+        <ol className="grid gap-x-6 sm:grid-cols-3">
+          {homeEntryPoints.map((entry) => (
+            <li key={entry.number}>
+              <Link
+                href={entry.href}
+                className="group flex min-h-11 items-center gap-3 py-2"
+              >
+                <span className="font-mono text-xs text-signal">
+                  {entry.number}
+                </span>
+                <span>
+                  <span className="block font-serif text-lg group-hover:text-signal">
+                    {entry.title}
+                  </span>
+                  <span className="mt-1 hidden text-xs leading-5 text-ink-muted sm:block">
+                    {entry.description}
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </nav>
 
       <section
         aria-label="Continue exploring Mainland Dispatch"
@@ -249,7 +232,7 @@ export default function HomePage() {
           <div className="mt-6 divide-y divide-rule border-y border-rule">
             {previousNotebooks.map((entry) => (
               <article key={entry.slug} className="py-5 first:pt-4 last:pb-4">
-                <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+                <p className="font-mono text-xs uppercase tracking-widest text-jade">
                   Inquiry {String(entry.ordinal).padStart(2, "0")} /{" "}
                   {entry.readTime}
                 </p>
@@ -292,11 +275,11 @@ export default function HomePage() {
                 key={dispatch.id}
                 className="grid grid-cols-[2rem_1fr] gap-3 py-4"
               >
-                <span className="font-mono text-[0.65rem] text-signal">
+                <span className="font-mono text-xs text-signal">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <p className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <p className="font-mono text-xs uppercase tracking-widest text-jade">
                     {dispatch.canonicalSource.publisher} / {dispatch.kind}
                   </p>
                   <h3 className="mt-2 font-serif text-lg leading-snug">

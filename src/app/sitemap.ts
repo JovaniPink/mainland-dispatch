@@ -54,13 +54,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const notebookEntries: MetadataRoute.Sitemap = publicNotebookEntries.map(
     (entry) => ({
       url: `${siteUrl}/notebook/${entry.slug}`,
-      lastModified: entry.updatedAt,
+      lastModified: entry.presentationUpdatedAt ?? entry.updatedAt,
       changeFrequency: "monthly",
       priority: entry.slug === latestNotebookEntry.slug ? 0.95 : 0.85,
     })
   );
 
   return [
+    {
+      url: `${siteUrl}/about`,
+      lastModified: "2026-09-07",
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
     {
       url: siteUrl,
       lastModified: newestNotebookRevision,

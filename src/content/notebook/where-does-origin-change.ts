@@ -98,11 +98,11 @@ const parsed = parseOriginProofNotebookEntry({
   slug: "where-does-origin-change",
   title: "Where Does Origin Change?",
   subtitle:
-    "Crossing a border changes admission status. It does not, by itself, change where a product originates.",
+    "A vehicle can enter Canada without becoming Canadian-origin. What evidence separates border admission from production, origin qualification, and the trade treatment available at US entry?",
   description:
     "A source-audited inquiry into the separate proof gates for Canadian admission, production, USMCA qualification, certification, and entry into the United States.",
   thesis:
-    "A vehicle admitted to Canada does not become Canadian-origin merely by crossing the border. Production, product-specific USMCA qualification, certification, and US entry are separate proof gates; the reviewed public record documents aggregate Canadian admission but not a quota vehicle that completed the later gates or violated customs law.",
+    "Admission to Canada does not establish Canadian origin. Production, product-specific USMCA qualification, certification, and US entry each require separate evidence. The reviewed public record documents aggregate Canadian admission; it does not identify a quota vehicle that completed those later steps or establish that one violated customs law.",
   frontPagePreview: {
     finding:
       "Canada recorded 15,603 first-period China EV quota uses, but admission is only the first step in a separate production, qualification, certification, and US-entry proof chain.",
@@ -116,6 +116,7 @@ const parsed = parseOriginProofNotebookEntry({
   },
   publishedAt: "2026-09-01",
   updatedAt: "2026-09-01",
+  presentationUpdatedAt: "2026-09-07",
   readTime: "19 min",
   tags: ["Canada", "China", "Electric vehicles", "Rules of origin", "USMCA"],
   editorialStatus: "published",
@@ -155,7 +156,7 @@ const parsed = parseOriginProofNotebookEntry({
     ],
     changed: [
       "September 1 publication: rules-of-origin material moved from Inquiry 06 with all 16 legacy trade source identities, its chronology, proof ladder, source frames, and claim checks preserved.",
-      "Two post-migration primary records were admitted as a separate cohort: Notice 1168 and the quota utilization report. They add observed admission scope and a derived second-period capacity without changing the later proof gates.",
+      "Two primary records were reviewed after the article split: Notice 1168 and the quota utilization report. They clarify observed admission and the calculation of second-period capacity. They do not establish production, origin qualification, or US entry.",
       "Inquiry 06 retains the initiating format, audio metadata, player, culture and memory analysis, original route identity, and accessible compatibility notices for every moved fragment.",
     ],
   },

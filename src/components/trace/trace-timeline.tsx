@@ -3,7 +3,6 @@
 import { useMachine } from "@xstate/react";
 import Link from "next/link";
 import type { Trace } from "@/content/schema";
-import { getDispatchById } from "@/content/dispatches";
 import { phaseLabels } from "@/content/traces";
 import { formatDate } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -14,7 +13,14 @@ import { StateLab } from "@/components/state-lab/state-lab";
  * Chronological story record with a clickable entry list and a
  * "critical moments" sidebar (the chess-lab review-panel pattern).
  */
-export function TraceTimeline({ trace }: { trace: Trace }) {
+export function TraceTimeline({
+  trace,
+  dispatchSlugs,
+}: {
+  trace: Trace;
+  /** Entry id → Dispatch slug, resolved on the server so no catalog ships here. */
+  dispatchSlugs: Record<string, string>;
+}) {
   const [state, send] = useMachine(traceMachine, {
     input: {
       initialId: trace.entries[0]?.id ?? "",
@@ -29,9 +35,7 @@ export function TraceTimeline({ trace }: { trace: Trace }) {
       <ol className="relative border-l border-rule pl-6">
         {trace.entries.map((entry) => {
           const selected = entry.id === selectedId;
-          const dispatch = entry.dispatchId
-            ? getDispatchById(entry.dispatchId)
-            : undefined;
+          const dispatchSlug = dispatchSlugs[entry.id];
           return (
             <li
               key={entry.id}
@@ -43,7 +47,7 @@ export function TraceTimeline({ trace }: { trace: Trace }) {
                 className={cn(
                   "absolute -left-[1.85rem] top-1.5 h-2.5 w-2.5 rounded-full border",
                   entry.critical
-                    ? "border-signal bg-signal"
+                    ? "border-signal bg-signal-fill"
                     : "border-ink-muted bg-paper"
                 )}
               />
@@ -52,7 +56,7 @@ export function TraceTimeline({ trace }: { trace: Trace }) {
                 aria-expanded={selected}
                 className="block w-full text-left"
               >
-                <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+                <p className="font-mono text-xs uppercase tracking-widest text-jade">
                   {formatDate(entry.date)} · {phaseLabels[entry.phase]}
                 </p>
                 <h3
@@ -78,9 +82,9 @@ export function TraceTimeline({ trace }: { trace: Trace }) {
                         {entry.sourceLabel ?? "Source"} ↗
                       </a>
                     )}
-                    {dispatch && (
+                    {dispatchSlug && (
                       <Link
-                        href={`/dispatch/${dispatch.slug}`}
+                        href={`/dispatch/${dispatchSlug}`}
                         className="font-mono text-xs uppercase tracking-widest text-jade hover:text-signal"
                       >
                         Read dispatch →
@@ -110,7 +114,7 @@ export function TraceTimeline({ trace }: { trace: Trace }) {
                 }}
                 className="text-left"
               >
-                <p className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-muted">
+                <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                   {formatDate(entry.date)}
                 </p>
                 <p className="font-serif text-sm leading-snug hover:text-signal">

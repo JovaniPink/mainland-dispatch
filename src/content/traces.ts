@@ -5,6 +5,7 @@ const seed = {
   title: "The open-weight strategy before Kimi K3",
   intro:
     "A source-linked chronology of how American and Chinese model developers described weight access, licenses, ecosystems, and technical advantage before the current Kimi K3 debate.",
+  assessmentAsOf: "2026-07-22",
   currentAssessment:
     "The record confirms that open-weight distribution is a strategy used by both US and Chinese developers. It does not support a simple open-versus-closed national divide, and Kimi's announced July 27 artifact release remains an announcement until the promised files and license can be inspected.",
   assessmentStatus: "contested",

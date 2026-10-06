@@ -53,3 +53,10 @@ export function notebookSourceKnowledgeId(
     ""
   )}`;
 }
+
+export function dispatchSourceKnowledgeId(
+  slug: string,
+  sourceId?: string
+): string {
+  return `mainland-dispatch:source:${slug}-${sourceId ?? "canonical"}`;
+}

@@ -6,11 +6,11 @@ export const belowHalfIsNotGone = parseEnergySystemNotebookEntry({
   slug: "below-half-is-not-gone",
   title: "Below Half Is Not Gone",
   subtitle:
-    "Coal fell below half of China's electricity mix while its output and fleet still grew.",
+    "Coal fell below half of China's electricity generation. Why did its output and fleet still grow, and what does that tell us about the transition?",
   description:
     "A layered reading of China's first-half 2026 electricity data separates generation share, output, capacity, and system use.",
   thesis:
-    "Coal's 49.7 percent generation share is a real structural milestone, but share, output, installed capacity, and utilization answer different questions: coal can lose share while a larger fleet still generates more electricity, and integration constraints can coexist with rapid renewable growth.",
+    "Coal's 49.7 percent generation share marks a structural change, even as coal output and installed capacity grew. Share, output, capacity, and utilization answer different questions. A larger fleet can generate more electricity while losing share and being used less intensively; integration constraints can also coexist with rapid renewable growth.",
   frontPagePreview: {
     finding:
       "Coal supplied 49.7 percent of first-half generation, even as coal output rose 3.4 percent and 30 GW of capacity entered operation.",
@@ -22,6 +22,7 @@ export const belowHalfIsNotGone = parseEnergySystemNotebookEntry({
       "notebook-source-energy-crea-gem-h1",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-09-01",
   updatedAt: "2026-09-01",
   readTime: "16 min",

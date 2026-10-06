@@ -85,7 +85,7 @@ export function MediaFacade({ dispatch: d }: { dispatch: Dispatch }) {
           />
         ) : state.matches("playing") && prototypeMedia ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 bg-[radial-gradient(circle_at_25%_25%,var(--jade)_0,transparent_38%),linear-gradient(135deg,#17201d,#25322d)] p-6 text-center text-[#f3f0e8]">
-            <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#d8aaa5]">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#d8aaa5]">
               Prototype media surface
             </span>
             <p className="max-w-lg font-serif text-xl leading-snug">
@@ -129,7 +129,7 @@ export function MediaFacade({ dispatch: d }: { dispatch: Dispatch }) {
         ) : state.matches("loading") ? (
           <div className="flex h-full flex-col items-center justify-center gap-3">
             <span className="loading-mark h-8 w-8 rounded-full border-2 border-paper/30 border-t-signal" />
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-paper/70">
+            <p className="font-mono text-xs uppercase tracking-widest text-paper/70">
               Preparing media
             </p>
           </div>
@@ -145,10 +145,10 @@ export function MediaFacade({ dispatch: d }: { dispatch: Dispatch }) {
             <span className="font-serif text-base text-paper">
               {d.canonicalSource.publisher}
             </span>
-            <span className="font-mono text-[0.65rem] uppercase tracking-widest text-paper/70">
+            <span className="font-mono text-xs uppercase tracking-widest text-paper/70">
               {meta.join(" · ")}
             </span>
-            <span className="border border-paper/40 px-3 py-1 font-mono text-[0.65rem] uppercase tracking-widest text-paper/70">
+            <span className="border border-paper/40 px-3 py-1 font-mono text-xs uppercase tracking-widest text-paper/70">
               {prototypeMedia
                 ? "Demo interaction. No third party loads."
                 : "External source. Loads on play."}

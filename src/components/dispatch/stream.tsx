@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useMachine } from "@xstate/react";
 import { readerMachine } from "@/machines/reader-machine";
 import { filterDispatches, sortByCuratedDesc } from "@/lib/filters";
-import { publishedDispatches } from "@/content/dispatches";
 import { verticals, kindLabels } from "@/content/site";
-import type { DispatchKind, Vertical } from "@/content/schema";
+import type { DispatchKind, PublicDispatch, Vertical } from "@/content/schema";
 import { cn } from "@/lib/utils";
 import { DispatchCard } from "./dispatch-card";
 import { StateLab } from "@/components/state-lab/state-lab";
@@ -37,7 +36,8 @@ function Chip({
   );
 }
 
-export function Stream() {
+/** Callers pass only public projections (see `toPublicDispatch`). */
+export function Stream({ dispatches }: { dispatches: PublicDispatch[] }) {
   const [state, send] = useMachine(readerMachine);
   const [lastEvent, setLastEvent] = useState<string | null>(null);
   const [history, setHistory] = useState<string[]>([]);
@@ -61,7 +61,7 @@ export function Stream() {
     ]);
   }, [state.value, vertical, kind, query]);
   const visible = sortByCuratedDesc(
-    filterDispatches(publishedDispatches, { vertical, kind, query })
+    filterDispatches(dispatches, { vertical, kind, query })
   );
 
   return (
@@ -116,7 +116,7 @@ export function Stream() {
           className="w-full max-w-xs border border-rule bg-paper px-3 py-1.5 font-mono text-xs tracking-wide placeholder:text-ink-muted focus:border-jade focus:outline-none"
         />
         <p className="whitespace-nowrap font-mono text-xs uppercase tracking-widest text-ink-muted">
-          {visible.length} / {publishedDispatches.length}
+          {visible.length} / {dispatches.length}
         </p>
       </div>
 

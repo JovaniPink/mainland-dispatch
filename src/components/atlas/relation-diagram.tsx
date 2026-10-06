@@ -134,7 +134,7 @@ export function RelationDiagram({
 
       <div className="grid gap-5 p-4 sm:border-t sm:border-rule sm:grid-cols-[1fr_1.1fr]">
         <div>
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             Places in this step
           </p>
           <ul className="mt-2 space-y-1" aria-label="Step locations">
@@ -151,7 +151,7 @@ export function RelationDiagram({
                   }`}
                 >
                   <span className="font-serif">{place.label}</span>
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                  <span className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {place.precision}
                   </span>
                 </button>
@@ -160,7 +160,7 @@ export function RelationDiagram({
           </ul>
         </div>
         <div>
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             Documented relationships
           </p>
           <ul className="mt-2 space-y-3 text-sm">
@@ -170,7 +170,7 @@ export function RelationDiagram({
                   {byId.get(relation.from)?.label} →{" "}
                   {byId.get(relation.to)?.label}
                 </span>
-                <span className="mt-0.5 block font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+                <span className="mt-0.5 block font-mono text-xs uppercase tracking-widest text-ink-muted">
                   {relation.label}
                 </span>
               </li>

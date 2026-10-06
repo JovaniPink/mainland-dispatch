@@ -4,6 +4,8 @@ import { Composer } from "@/components/desk/composer";
 import { NotebookFiveAudioAudit } from "@/components/desk/notebook-five-audio-audit";
 import { ReviewQueue } from "@/components/desk/review-queue";
 import { SourceLeadInbox } from "@/components/desk/source-lead-inbox";
+import { dispatches } from "@/content/dispatches";
+import { sourceLeads } from "@/content/source-leads";
 
 export const metadata: Metadata = {
   title: "Desk",
@@ -17,6 +19,21 @@ const deskEnabled =
 
 export default function DeskPage() {
   if (!deskEnabled) notFound();
+
+  // The private catalog is read here, on the server, and reaches the Desk's
+  // client components only as props of this gated page.
+  const knownSources = dispatches.map((dispatch) => ({
+    id: dispatch.id,
+    url: dispatch.canonicalSource.url,
+  }));
+  const reviewQueue = dispatches.filter(
+    (dispatch) =>
+      dispatch.editorialStatus !== "published" &&
+      dispatch.editorialStatus !== "corrected" &&
+      dispatch.editorialStatus !== "archived"
+  );
+  const queuedLeadIds = new Set(reviewQueue.map((d) => d.sourceLeadId));
+  const queuedLeads = sourceLeads.filter((lead) => queuedLeadIds.has(lead.id));
 
   return (
     <div className="px-4 py-10 sm:px-6">
@@ -36,9 +53,9 @@ export default function DeskPage() {
 
       <div className="mt-8 space-y-6">
         <NotebookFiveAudioAudit />
-        <Composer />
-        <SourceLeadInbox />
-        <ReviewQueue />
+        <Composer knownSources={knownSources} />
+        <SourceLeadInbox sourceLeads={sourceLeads} />
+        <ReviewQueue queue={reviewQueue} sourceLeads={queuedLeads} />
       </div>
     </div>
   );

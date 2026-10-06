@@ -50,21 +50,17 @@ const monthLabels = [
   "DEC",
 ] as const;
 
-function dateParts(iso: string) {
-  const [year, month, day] = iso.split("-");
-  const monthLabel = monthLabels[Number(month) - 1];
-  if (!year || !day || !monthLabel) {
-    throw new Error(`Expected an ISO date, received: ${iso}`);
-  }
-  return { year, month: monthLabel, day };
-}
-
 export function formatDate(iso: string): string {
-  const date = dateParts(iso);
-  return `${date.day} ${date.month} ${date.year}`;
+  const [year, month, day] = iso.split("-");
+  if (
+    !/^\d{4}(-\d{2}){0,2}$/.test(iso) ||
+    (month && !monthLabels[Number(month) - 1])
+  )
+    throw new Error(`Expected a source date, received: ${iso}`);
+  return [day, month ? monthLabels[Number(month) - 1] : undefined, year]
+    .filter(Boolean)
+    .join(" ");
 }
 
-export function formatDateShort(iso: string): string {
-  const date = dateParts(iso);
-  return `${date.day} ${date.month}`;
-}
+/** Historical collections always retain the year and original date precision. */
+export const formatDateShort = formatDate;

@@ -102,10 +102,10 @@ describe("July Is Not One Number Notebook page", () => {
       expect(container.querySelector(`#${source.id}`)).toBeInTheDocument();
     }
     expect(
-      screen.getByRole("link", { name: "Read Inquiry 06" })
+      screen.getByRole("link", { name: /inquiry.*What Gets Through/ })
     ).toHaveAttribute("href", "/notebook/what-gets-through");
     expect(
-      screen.getByRole("link", { name: "Read Inquiry 08" })
+      screen.getByRole("link", { name: /Next inquiry.*Below Half Is Not Gone/ })
     ).toHaveAttribute("href", "/notebook/below-half-is-not-gone");
   });
 

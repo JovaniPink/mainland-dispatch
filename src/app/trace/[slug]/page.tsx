@@ -1,5 +1,7 @@
+import { formatDate } from "@/content/site";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { getDispatchById, isPublicDispatch } from "@/content/dispatches";
 import { traces, getTrace } from "@/content/traces";
 import { evidenceStatusLabels } from "@/content/dossiers";
 import { TraceTimeline } from "@/components/trace/trace-timeline";
@@ -34,6 +36,17 @@ export default async function TracePage({
   const t = getTrace(slug);
   if (!t) notFound();
 
+  const dispatchSlugs: Record<string, string> = {};
+  for (const entry of t.entries) {
+    const dispatch = entry.dispatchId
+      ? getDispatchById(entry.dispatchId)
+      : undefined;
+    // Link only public records; review-stage Dispatches have no public page.
+    if (dispatch && isPublicDispatch(dispatch)) {
+      dispatchSlugs[entry.id] = dispatch.slug;
+    }
+  }
+
   return (
     <div className="px-4 py-10 sm:px-6">
       <header className="rise-in max-w-2xl">
@@ -49,12 +62,12 @@ export default async function TracePage({
       </header>
 
       <div className="mt-10">
-        <TraceTimeline trace={t} />
+        <TraceTimeline trace={t} dispatchSlugs={dispatchSlugs} />
       </div>
 
       <section className="mt-10 max-w-2xl border-t border-rule pt-6">
         <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
-          Current editorial assessment ·{" "}
+          Assessment as of {formatDate(t.assessmentAsOf)} ·{" "}
           <span className="text-signal">
             {evidenceStatusLabels[t.assessmentStatus]}
           </span>

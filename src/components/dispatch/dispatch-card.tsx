@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Dispatch } from "@/content/schema";
+import type { PublicDispatch } from "@/content/schema";
 import { formatDateShort, verticals } from "@/content/site";
 import { MetaLine } from "./meta-line";
 import { SaveButton } from "./save-button";
@@ -10,7 +10,7 @@ export function DispatchCard({
   dispatch: d,
   featured = false,
 }: {
-  dispatch: Dispatch;
+  dispatch: PublicDispatch;
   featured?: boolean;
 }) {
   const verticalLabels: string[] = [
@@ -40,18 +40,18 @@ export function DispatchCard({
         </h3>
         <p className="text-sm leading-relaxed text-ink-muted">{d.summary}</p>
         <div>
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             Editorial note
           </p>
           <p className="mt-1 font-serif text-sm leading-relaxed">
             {d.commentary}
           </p>
         </div>
-        <p className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-muted">
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
           {verticalLabels.join(" · ")}
         </p>
         <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-rule pt-3">
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-muted">
+          <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
             Published {formatDateShort(d.canonicalSource.publishedAt)} · Curated{" "}
             {formatDateShort(d.curatedAt)}
           </p>

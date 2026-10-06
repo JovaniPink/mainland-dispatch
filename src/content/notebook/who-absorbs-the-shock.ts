@@ -6,11 +6,11 @@ export const whoAbsorbsTheShock = parseTradeAdjustmentNotebookEntry({
   slug: "who-absorbs-the-shock",
   title: "Who Absorbs the Shock?",
   subtitle:
-    "A renewed Chinese export surge travels through households, factories, trade balances, foreign markets, and local labor systems. Each stage distributes gains and losses differently.",
+    "A renewed Chinese export surge moves through households, factories, foreign markets, and local labor systems. Who gains, who pays, and which problems can policy address?",
   description:
     "A source-audited inquiry into China Shock 2.0, the groups absorbing its benefits and costs, and the policy tools aimed at different parts of the adjustment.",
   thesis:
-    "China Shock 2.0 names a large and uneven adjustment, not one cause or one verdict. Its benefits and costs reach different groups through five stages, so any policy claim must identify the problem it targets, who pays, and what the evidence does not establish.",
+    "China Shock 2.0 describes a large and uneven adjustment. Benefits and costs reach different groups through five stages, from domestic demand and production to foreign markets and local workers. A useful policy claim identifies the problem it targets, who bears the cost, and what the evidence can establish.",
   frontPagePreview: {
     finding:
       "China's export expansion now begins from a much larger base, while its consumer, producer, worker, and policy effects remain sharply uneven across products and places.",
@@ -23,6 +23,7 @@ export const whoAbsorbsTheShock = parseTradeAdjustmentNotebookEntry({
       "notebook-source-adjustment-ecb",
     ],
   },
+  presentationUpdatedAt: "2026-09-07",
   publishedAt: "2026-08-26",
   updatedAt: "2026-08-26",
   readTime: "22 min",

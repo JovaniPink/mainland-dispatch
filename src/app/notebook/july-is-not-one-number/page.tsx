@@ -1,5 +1,5 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { EconomicSignalsFigure } from "@/components/notebook/economic-signals-figure";
 import {
   NotebookFormats,
@@ -20,8 +20,8 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
-  ["frame", "The reading frame"],
   ["signals", "Six signals"],
+  ["frame", "The reading frame"],
   ["production", "Production clocks"],
   ["demand", "Retail and demand"],
   ["investment", "Uneven investment"],
@@ -50,6 +50,7 @@ export default function JulyIsNotOneNumberPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-audited data interpretation"
@@ -59,29 +60,6 @@ export default function JulyIsNotOneNumberPage() {
         readingRule="Keep the subject, period, unit, comparison, and coverage attached to every number. None of the six measures is the economy by itself."
         contentClassName="lg:max-w-[62rem]"
       >
-        <section className="mt-12">
-          <NotebookSectionHeading
-            id="frame"
-            eyebrow="Bounded frame - July and January-July 2026"
-          >
-            Six releases, six statistical objects
-          </NotebookSectionHeading>
-          <div className="mt-6">
-            <NotebookProse paragraphs={entry.sections.frame} />
-          </div>
-
-          <aside className="mt-7 border-l-2 border-signal bg-signal-soft/25 p-5">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-signal">
-              Editorial boundary
-            </p>
-            <p className="mt-3 text-sm leading-7">
-              This Notebook is not verified Mainland Dispatch reporting. It
-              audits what the cited institutions published, how they defined the
-              measures, and where alternative interpretations remain.
-            </p>
-          </aside>
-        </section>
-
         <section className="mt-12">
           <NotebookSectionHeading
             id="signals"
@@ -95,6 +73,29 @@ export default function JulyIsNotOneNumberPage() {
               sources={entry.sourceTrail}
             />
           </div>
+        </section>
+
+        <section className="mt-12">
+          <NotebookSectionHeading
+            id="frame"
+            eyebrow="Bounded frame - July and January-July 2026"
+          >
+            Six releases, six statistical objects
+          </NotebookSectionHeading>
+          <div className="mt-6">
+            <NotebookProse paragraphs={entry.sections.frame} />
+          </div>
+
+          <aside className="mt-7 border-l-2 border-signal bg-signal-soft/25 p-5">
+            <p className="font-mono text-xs uppercase tracking-widest text-signal">
+              Editorial boundary
+            </p>
+            <p className="mt-3 text-sm leading-7">
+              This Notebook is not verified Mainland Dispatch reporting. It
+              audits what the cited institutions published, how they defined the
+              measures, and where alternative interpretations remain.
+            </p>
+          </aside>
         </section>
 
         <section className="mt-12">
@@ -156,7 +157,7 @@ export default function JulyIsNotOneNumberPage() {
             {entry.alternativeReadings.map((item, index) => (
               <li key={item.id} className="border border-rule p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="font-mono text-[0.62rem] uppercase tracking-widest text-jade">
+                  <p className="font-mono text-xs uppercase tracking-widest text-jade">
                     Reading {String(index + 1).padStart(2, "0")}
                   </p>
                   <NotebookStatus status={item.status} />
@@ -176,7 +177,7 @@ export default function JulyIsNotOneNumberPage() {
             <NotebookProse paragraphs={entry.sections.synthesis} />
           </div>
           <aside className="mt-10 border-t border-rule pt-8">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+            <p className="font-mono text-xs uppercase tracking-widest text-jade">
               Institutional context - not July observations
             </p>
             <h3 className="mt-2 font-serif text-2xl leading-tight">
@@ -244,25 +245,7 @@ export default function JulyIsNotOneNumberPage() {
           </p>
         </section>
 
-        <nav
-          aria-label="Notebook navigation"
-          className="mt-10 flex flex-wrap justify-between gap-4 border-t border-rule pt-6"
-        >
-          <Link
-            href="/notebook/what-gets-through"
-            aria-label="Read Inquiry 06"
-            className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
-          >
-            &lt;- Read Inquiry 06
-          </Link>
-          <Link
-            href="/notebook/below-half-is-not-gone"
-            aria-label="Read Inquiry 08"
-            className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
-          >
-            Read Inquiry 08 -&gt;
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

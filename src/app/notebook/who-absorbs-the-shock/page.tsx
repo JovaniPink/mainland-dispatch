@@ -1,3 +1,4 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NotebookAudioFacade } from "@/components/notebook/notebook-audio-facade";
@@ -26,8 +27,8 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
-  ["why", "Why call it a shock?"],
   ["mechanism", "Five-stage adjustment"],
+  ["why", "Why call it a shock?"],
   ["comparison", "First and second shocks"],
   ["distribution", "Who receives what"],
   ["policy", "Policy targets"],
@@ -55,6 +56,7 @@ export default function WhoAbsorbsTheShockPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -65,6 +67,25 @@ export default function WhoAbsorbsTheShockPage() {
         contentClassName="lg:max-w-[68rem]"
       >
         <section className="mt-12">
+          <NotebookSectionHeading
+            id="mechanism"
+            eyebrow="A factory system has a balance of payments"
+          >
+            Five stages, not one cause
+          </NotebookSectionHeading>
+
+          <div className="mt-8">
+            <AdjustmentChainFigure
+              steps={entry.mechanismSteps}
+              sources={entry.sourceTrail}
+            />
+          </div>
+          <div className="mt-6">
+            <NotebookProse paragraphs={entry.sections.mechanism} />
+          </div>
+        </section>
+
+        <section className="mt-12">
           <NotebookSectionHeading id="why" eyebrow="A definition with limits">
             Why call it a shock?
           </NotebookSectionHeading>
@@ -73,7 +94,7 @@ export default function WhoAbsorbsTheShockPage() {
           </div>
 
           <div className="mt-8 border-l-4 border-signal bg-signal-soft/25 p-5">
-            <p className="font-mono text-[0.62rem] uppercase tracking-widest text-signal">
+            <p className="font-mono text-xs uppercase tracking-widest text-signal">
               Working verdict
             </p>
             <div className="mt-4">
@@ -122,7 +143,7 @@ export default function WhoAbsorbsTheShockPage() {
                         .map((span) => `${span.start}-${span.end}`)
                         .join(", ")}
                     </span>
-                    <span className="border border-jade px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-jade">
+                    <span className="border border-jade px-2 py-1 font-mono text-xs uppercase tracking-widest text-jade">
                       Audited
                     </span>
                   </div>
@@ -137,21 +158,6 @@ export default function WhoAbsorbsTheShockPage() {
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <NotebookSectionHeading
-            id="mechanism"
-            eyebrow="A factory system has a balance of payments"
-          >
-            Five stages, not one cause
-          </NotebookSectionHeading>
-          <div className="mt-6">
-            <NotebookProse paragraphs={entry.sections.mechanism} />
-          </div>
-          <div className="mt-8">
-            <AdjustmentChainFigure steps={entry.mechanismSteps} />
           </div>
         </section>
 
@@ -215,13 +221,13 @@ export default function WhoAbsorbsTheShockPage() {
               href="/notebook/open-models-closed-system"
               className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
             >
-              Read Inquiry 02
+              Open Models, Closed System?
             </Link>
             <Link
               href="/notebook/dominance-is-a-dashboard"
               className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
             >
-              Read Inquiry 03
+              Dominance Is a Dashboard, Not a Crown
             </Link>
           </nav>
         </section>
@@ -240,10 +246,10 @@ export default function WhoAbsorbsTheShockPage() {
                 className="flex min-w-0 flex-col border border-rule p-4"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -255,7 +261,7 @@ export default function WhoAbsorbsTheShockPage() {
                 <p className="mt-3 text-sm leading-6 text-ink-muted">
                   {item.assessment}
                 </p>
-                <p className="mt-auto pt-4 font-mono text-[0.58rem] uppercase tracking-widest text-jade">
+                <p className="mt-auto pt-4 font-mono text-xs uppercase tracking-widest text-jade">
                   {item.sourceIds.length} displayed{" "}
                   {item.sourceIds.length === 1 ? "source" : "sources"}
                 </p>
@@ -273,7 +279,10 @@ export default function WhoAbsorbsTheShockPage() {
           actionLabel={`Examine ${entry.sourceTrail.length} sources`}
         >
           <div className="mt-6">
-            <NotebookSourceTrail sources={entry.sourceTrail} />
+            <NotebookSourceTrail
+              headingId="source-ledger"
+              sources={entry.sourceTrail}
+            />
           </div>
         </NotebookSecondarySection>
 
@@ -290,7 +299,7 @@ export default function WhoAbsorbsTheShockPage() {
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -301,7 +310,7 @@ export default function WhoAbsorbsTheShockPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -316,23 +325,7 @@ export default function WhoAbsorbsTheShockPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/notebook/routing-around-risk"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read Inquiry 04
-          </Link>
-          <Link
-            href="/notebook/what-gets-through"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Read Inquiry 06
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

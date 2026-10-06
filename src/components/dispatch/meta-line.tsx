@@ -1,7 +1,7 @@
-import type { Dispatch } from "@/content/schema";
+import type { PublicDispatch } from "@/content/schema";
 import { kindLabels } from "@/content/site";
 
-export function metaParts(d: Dispatch): string[] {
+export function metaParts(d: PublicDispatch): string[] {
   const parts = [
     kindLabels[d.kind],
     d.canonicalSource.publisher,
@@ -14,7 +14,7 @@ export function metaParts(d: Dispatch): string[] {
   return parts;
 }
 
-export function MetaLine({ dispatch }: { dispatch: Dispatch }) {
+export function MetaLine({ dispatch }: { dispatch: PublicDispatch }) {
   return (
     <p className="font-mono text-xs uppercase tracking-widest text-jade">
       {metaParts(dispatch).join(" · ")}

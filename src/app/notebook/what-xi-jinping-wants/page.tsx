@@ -1,5 +1,6 @@
+import { AttributedArgumentFigure } from "@/components/notebook/attributed-argument-figure";
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { NotebookStatus } from "@/components/notebook/notebook-status";
 import {
@@ -18,8 +19,8 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
+  ["turning-points", "Rudd’s argument"],
   ["why", "Why this stayed with me"],
-  ["turning-points", "Three turning points"],
   ["model", "Rudd’s model"],
   ["explains", "What it explains"],
   ["pushback", "Where I push back"],
@@ -46,6 +47,7 @@ export default function WhatXiJinpingWantsPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Public research notebook"
@@ -55,6 +57,10 @@ export default function WhatXiJinpingWantsPage() {
         readingRule="A persuasive model is not the same thing as a settled fact."
         contentClassName="lg:max-w-[44rem]"
       >
+        <section id="turning-points" className="scroll-mt-32">
+          <AttributedArgumentFigure entry={entry} />
+        </section>
+
         <section>
           <NotebookSectionHeading id="why" eyebrow="The starting point">
             Why this stayed with me
@@ -73,48 +79,6 @@ export default function WhatXiJinpingWantsPage() {
           </NotebookSectionHeading>
           <div className="mt-6">
             <NotebookFormats formats={entry.formats} />
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <NotebookSectionHeading
-            id="turning-points"
-            eyebrow="Timecoded argument map"
-          >
-            Three turning points
-          </NotebookSectionHeading>
-          <div className="mt-6 space-y-4">
-            {entry.turningPoints.map((point, index) => (
-              <article
-                key={point.timecode}
-                className="border border-rule bg-paper-warm/25 p-5"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <a
-                    href={`https://www.youtube.com/watch?v=DprKDXRlubw&t=${point.seconds}s`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-mono text-xs uppercase tracking-widest text-signal hover:text-ink"
-                  >
-                    {String(index + 1).padStart(2, "0")} · {point.timecode} ↗
-                  </a>
-                  <NotebookStatus status={point.status} />
-                </div>
-                <h3 className="mt-4 font-serif text-xl leading-snug">
-                  {point.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7">
-                  <strong className="font-semibold">Rudd’s argument:</strong>{" "}
-                  {point.argument}
-                </p>
-                <p className="mt-3 border-l-2 border-jade pl-3 text-sm leading-7 text-ink-muted">
-                  <strong className="font-semibold text-ink">
-                    My reading:
-                  </strong>{" "}
-                  {point.reading}
-                </p>
-              </article>
-            ))}
           </div>
         </section>
 
@@ -192,7 +156,10 @@ export default function WhatXiJinpingWantsPage() {
           summary="The source trail preserves the supporting record, context, and limits behind this inquiry."
           actionLabel="Examine sources"
         >
-          <NotebookSourceTrail sources={entry.sourceTrail} />
+          <NotebookSourceTrail
+            headingId="source-ledger"
+            sources={entry.sourceTrail}
+          />
         </NotebookSecondarySection>
 
         <section className="mt-12">
@@ -208,7 +175,7 @@ export default function WhatXiJinpingWantsPage() {
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -219,7 +186,7 @@ export default function WhatXiJinpingWantsPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -234,23 +201,7 @@ export default function WhatXiJinpingWantsPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 flex flex-col gap-3 border-t border-rule pt-6 sm:flex-row"
-        >
-          <Link
-            href="/archive"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore the source archive
-          </Link>
-          <Link
-            href="/notebook/open-models-closed-system"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read Inquiry 02
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );

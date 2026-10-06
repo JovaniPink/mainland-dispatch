@@ -1,3 +1,5 @@
+import { FigureSources } from "./figure-sources";
+import type { NotebookEntry } from "@/content/notebook/schema";
 import type { PowerBalanceNotebookEntry } from "@/content/notebook/schema";
 
 type Comparison = PowerBalanceNotebookEntry["comparisons"][number];
@@ -30,7 +32,9 @@ function RelativeBar({
       </div>
       <div className="mt-2 h-2 bg-rule/60" aria-hidden>
         <div
-          className={tone === "signal" ? "h-full bg-signal" : "h-full bg-jade"}
+          className={
+            tone === "signal" ? "h-full bg-signal-fill" : "h-full bg-jade"
+          }
           style={{ width: `${width}%` }}
         />
       </div>
@@ -38,21 +42,27 @@ function RelativeBar({
   );
 }
 
-export function PairedPowerMetrics({ metrics }: { metrics: Comparison[] }) {
+export function PairedPowerMetrics({
+  metrics,
+  sources,
+}: {
+  metrics: Comparison[];
+  sources: NotebookEntry["sourceTrail"];
+}) {
   return (
     <figure aria-labelledby="paired-power-title">
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-rule pb-3">
         <figcaption id="paired-power-title">
-          <span className="block font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <span className="block font-mono text-xs uppercase tracking-widest text-jade">
             Eight dimensions · no composite score
           </span>
           <span className="mt-1 block font-serif text-xl">
             Paired indicators of scale and reach
           </span>
         </figcaption>
-        <div className="flex gap-4 font-mono text-[0.6rem] uppercase tracking-widest text-ink-muted">
+        <div className="flex gap-4 font-mono text-xs uppercase tracking-widest text-ink-muted">
           <span className="flex items-center gap-2">
-            <span className="h-2 w-2 bg-signal" aria-hidden /> China
+            <span className="h-2 w-2 bg-signal-fill" aria-hidden /> China
           </span>
           <span className="flex items-center gap-2">
             <span className="h-2 w-2 bg-jade" aria-hidden /> United States
@@ -68,10 +78,10 @@ export function PairedPowerMetrics({ metrics }: { metrics: Comparison[] }) {
           return (
             <article
               key={metric.id}
-              className="border border-rule bg-paper-warm/25 p-4"
+              className="border-t border-rule py-4 md:pr-4"
               aria-label={`${metric.label}, ${metric.asOf}: China ${metric.china.display}; United States ${metric.unitedStates.display}`}
             >
-              <p className="font-mono text-[0.58rem] uppercase tracking-widest text-ink-muted">
+              <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">
                 {metric.asOf} · {metric.unit}
               </p>
               <h3 className="mt-2 min-h-12 font-serif text-lg leading-snug">
@@ -94,7 +104,7 @@ export function PairedPowerMetrics({ metrics }: { metrics: Comparison[] }) {
                 />
               </div>
               <p className="mt-4 text-sm leading-6">{metric.reading}</p>
-              <p className="mt-3 border-l-2 border-rule pl-3 text-xs leading-5 text-ink-muted">
+              <p className="mt-3 border-l-2 border-rule pl-3 text-sm leading-6 text-ink-muted">
                 <strong className="text-ink">Do not overread:</strong>{" "}
                 {metric.caveat}
               </p>
@@ -102,10 +112,14 @@ export function PairedPowerMetrics({ metrics }: { metrics: Comparison[] }) {
           );
         })}
       </div>
-      <p className="mt-4 text-xs leading-5 text-ink-muted">
+      <p className="mt-4 text-sm leading-6 text-ink-muted">
         Bar lengths compare only the two values inside each card. They cannot be
         compared across cards because the units differ.
       </p>
+      <FigureSources
+        ids={[...new Set(metrics.flatMap((item) => item.sourceIds))]}
+        sources={sources}
+      />
     </figure>
   );
 }
@@ -121,7 +135,7 @@ export function ChinaConcentrationBars({
         id="concentration-title"
         className="border-b border-rule pb-3"
       >
-        <span className="block font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+        <span className="block font-mono text-xs uppercase tracking-widest text-signal">
           Different denominators · displayed separately
         </span>
         <span className="mt-1 block font-serif text-xl">
@@ -145,12 +159,12 @@ export function ChinaConcentrationBars({
               aria-hidden
             >
               <div
-                className="h-full bg-signal"
+                className="h-full bg-signal-fill"
                 style={{ width: `${item.value}%` }}
               />
             </div>
             <p className="mt-2 text-sm leading-6">{item.reading}</p>
-            <p className="mt-1 text-xs leading-5 text-ink-muted">
+            <p className="mt-1 text-sm leading-6 text-ink-muted">
               <strong className="text-ink">Boundary:</strong> {item.caveat}
             </p>
           </article>
@@ -161,23 +175,23 @@ export function ChinaConcentrationBars({
 }
 
 function DemographicCard({ profile }: { profile: DemographicProfile }) {
-  const tones = ["bg-signal", "bg-jade", "bg-ink-muted"];
+  const tones = ["bg-signal-fill", "bg-jade", "bg-ink-muted"];
 
   return (
     <article className="border border-rule bg-paper-warm/25 p-5">
-      <p className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+      <p className="font-mono text-xs uppercase tracking-widest text-jade">
         {profile.asOf} estimate
       </p>
       <h3 className="mt-2 font-serif text-2xl">{profile.country}</h3>
       <dl className="mt-4 grid grid-cols-2 gap-3 border-y border-rule py-4">
         <div>
-          <dt className="font-mono text-[0.58rem] uppercase tracking-widest text-ink-muted">
+          <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
             Population
           </dt>
           <dd className="mt-1 font-serif text-xl">{profile.totalDisplay}</dd>
         </div>
         <div>
-          <dt className="font-mono text-[0.58rem] uppercase tracking-widest text-ink-muted">
+          <dt className="font-mono text-xs uppercase tracking-widest text-ink-muted">
             Annual change
           </dt>
           <dd className="mt-1 font-serif text-xl">
@@ -186,7 +200,7 @@ function DemographicCard({ profile }: { profile: DemographicProfile }) {
         </div>
       </dl>
       {profile.migrationDisplay && (
-        <p className="mt-3 text-xs leading-5 text-ink-muted">
+        <p className="mt-3 text-sm leading-6 text-ink-muted">
           Migration contribution: {profile.migrationDisplay}
         </p>
       )}
@@ -219,7 +233,7 @@ function DemographicCard({ profile }: { profile: DemographicProfile }) {
           </div>
         ))}
       </dl>
-      <p className="mt-4 border-t border-rule pt-3 text-xs leading-5 text-ink-muted">
+      <p className="mt-4 border-t border-rule pt-3 text-sm leading-6 text-ink-muted">
         {profile.note}
       </p>
     </article>
@@ -234,7 +248,7 @@ export function DemographicProfiles({
   return (
     <figure aria-labelledby="demographic-title">
       <figcaption id="demographic-title" className="border-b border-rule pb-3">
-        <span className="block font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+        <span className="block font-mono text-xs uppercase tracking-widest text-jade">
           Comparable display bands · distinct national series
         </span>
         <span className="mt-1 block font-serif text-xl">
@@ -246,7 +260,7 @@ export function DemographicProfiles({
           <DemographicCard key={profile.country} profile={profile} />
         ))}
       </div>
-      <p className="mt-4 text-xs leading-5 text-ink-muted">
+      <p className="mt-4 text-sm leading-6 text-ink-muted">
         The age bands align the visual question, not the statistical systems.
         Census and NBS use different reference periods and national definitions;
         the notes preserve that boundary.

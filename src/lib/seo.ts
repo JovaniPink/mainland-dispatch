@@ -150,7 +150,7 @@ export function notebookArticleMetadata(entry: NotebookEntry): Metadata {
     description: entry.description,
     path: `/notebook/${entry.slug}`,
     publishedAt: entry.publishedAt,
-    updatedAt: entry.updatedAt,
+    updatedAt: entry.presentationUpdatedAt ?? entry.updatedAt,
     tags: entry.tags,
   });
 }
@@ -158,22 +158,29 @@ export function notebookArticleMetadata(entry: NotebookEntry): Metadata {
 export function notebookArticleJsonLd(
   entry: NotebookEntry
 ): Record<string, unknown> {
-  return articleJsonLd({
-    type: "Article",
-    title: entry.title,
-    description: entry.description,
-    path: `/notebook/${entry.slug}`,
-    publishedAt: entry.publishedAt,
-    updatedAt: entry.updatedAt,
-    tags: entry.tags,
-    citations: [
-      ...entry.formats.map((format) => format.url),
-      ...entry.sourceTrail.flatMap((source) =>
-        source.links.map((link) => link.url)
-      ),
-    ],
-    about: entry.tags,
-  });
+  return {
+    ...articleJsonLd({
+      type: "Article",
+      title: entry.title,
+      description: entry.description,
+      path: `/notebook/${entry.slug}`,
+      publishedAt: entry.publishedAt,
+      updatedAt: entry.presentationUpdatedAt ?? entry.updatedAt,
+      tags: entry.tags,
+      citations: [
+        ...entry.formats.map((format) => format.url),
+        ...entry.sourceTrail.flatMap((source) =>
+          source.links.map((link) => link.url)
+        ),
+      ],
+      about: entry.tags,
+    }),
+    editor: {
+      "@type": "Person",
+      name: "Jovani Pink",
+      url: absoluteUrl("/about"),
+    },
+  };
 }
 
 export function dispatchArticleMetadata(dispatch: Dispatch): Metadata {

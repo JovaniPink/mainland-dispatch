@@ -1,14 +1,13 @@
+import { NotebookEndNavigation } from "@/components/notebook/notebook-end-navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ChokepointPortfolioMap } from "@/components/notebook/chokepoint-portfolio-map";
-import { NotebookCompanionLinks } from "@/components/notebook/notebook-custody-links";
 import {
   NotebookFormats,
   NotebookProse,
   NotebookSectionHeading,
   NotebookSourceTrail,
 } from "@/components/notebook/notebook-components";
-import { MaritimeScaleCards } from "@/components/notebook/maritime-risk-graphics";
+import { ArcticCorridorFigure } from "@/components/notebook/arctic-corridor-figure";
 import {
   NotebookReaderShell,
   type NotebookSectionLink,
@@ -24,9 +23,9 @@ import { notebookArticleJsonLd, notebookArticleMetadata } from "@/lib/seo";
 
 const pagePath = `/notebook/${entry.slug}`;
 const sectionLinks = [
+  ["scale", "Corridor and three measures"],
   ["frame", "A corridor, not a substitute"],
   ["map", "The schematic route"],
-  ["scale", "Three incompatible measures"],
   ["season", "Ice and schedule"],
   ["governance", "Russian administration"],
   ["environment", "Environmental constraints"],
@@ -56,6 +55,7 @@ export default function TheArcticIsNotAShortcutPage() {
         thesis={entry.thesis}
         publishedAt={entry.publishedAt}
         updatedAt={entry.updatedAt}
+        presentationUpdatedAt={entry.presentationUpdatedAt}
         readTime={entry.readTime}
         tags={entry.tags}
         editorialLabel="Source-backed interpretation"
@@ -65,6 +65,18 @@ export default function TheArcticIsNotAShortcutPage() {
         readingRule="A planned or departed voyage is not a completed, repeatable, safe, or lower-impact corridor. Preserve season, unit, and authority at every step."
         contentClassName="lg:max-w-[62rem]"
       >
+        <section className="mt-12">
+          <NotebookSectionHeading id="scale" eyebrow="No common denominator">
+            Three measures that cannot become one score
+          </NotebookSectionHeading>
+          <div className="mt-7">
+            <ArcticCorridorFigure entry={entry} />
+          </div>
+          <div className="mt-6">
+            <NotebookProse paragraphs={entry.sections.scale} />
+          </div>
+        </section>
+
         <section className="mt-12">
           <NotebookSectionHeading id="frame" eyebrow="The evidentiary frame">
             A shorter line is not a substitute system
@@ -89,18 +101,6 @@ export default function TheArcticIsNotAShortcutPage() {
           </p>
           <div className="mt-7">
             <ChokepointPortfolioMap subset={arcticRouteSubset} />
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <NotebookSectionHeading id="scale" eyebrow="No common denominator">
-            Three measures that cannot become one score
-          </NotebookSectionHeading>
-          <div className="mt-6">
-            <NotebookProse paragraphs={entry.sections.scale} />
-          </div>
-          <div className="mt-7">
-            <MaritimeScaleCards metrics={entry.scaleMetrics} />
           </div>
         </section>
 
@@ -176,10 +176,10 @@ export default function TheArcticIsNotAShortcutPage() {
             {entry.claimAudit.map((item) => (
               <article key={item.id} className="border border-rule p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-jade">
+                  <span className="font-mono text-xs uppercase tracking-widest text-jade">
                     {evidenceStatusLabels[item.status]}
                   </span>
-                  <span className="border border-rule px-2 py-1 font-mono text-[0.55rem] uppercase tracking-widest text-ink-muted">
+                  <span className="border border-rule px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-muted">
                     {item.decision}
                   </span>
                 </div>
@@ -246,11 +246,14 @@ export default function TheArcticIsNotAShortcutPage() {
           legacyIds={["source-trail", "source-trail-heading"]}
           eyebrow={`${entry.sourceTrail.length} bounded stops`}
           title="Source trail and voyage boundary"
-          summary="Every source keeps its unit, institutional role, chronology, and limit. Shared source identities point to one knowledge object even though this page supplies Arctic-specific context."
+          summary="Each source keeps its date, role, and limitation. Sources shared with another inquiry retain the same identity, with context specific to the Arctic argument."
           actionLabel={`Examine ${entry.sourceTrail.length} sources`}
         >
           <div className="mt-6">
-            <NotebookSourceTrail sources={entry.sourceTrail} />
+            <NotebookSourceTrail
+              headingId="source-ledger"
+              sources={entry.sourceTrail}
+            />
           </div>
         </NotebookSecondarySection>
 
@@ -272,13 +275,11 @@ export default function TheArcticIsNotAShortcutPage() {
           </div>
         </section>
 
-        <NotebookCompanionLinks relationships={entry.relatedNotebooks ?? []} />
-
         <section
           id="question"
           className="mt-12 scroll-mt-32 border-y border-rule bg-jade-soft/35 px-5 py-8"
         >
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <p className="font-mono text-xs uppercase tracking-widest text-jade">
             One unresolved question
           </p>
           <p className="mt-4 font-serif text-2xl italic leading-relaxed">
@@ -287,7 +288,7 @@ export default function TheArcticIsNotAShortcutPage() {
         </section>
 
         <section className="mt-12">
-          <h2 className="font-mono text-[0.65rem] uppercase tracking-widest text-jade">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-jade">
             Review limitations
           </h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-muted">
@@ -302,23 +303,7 @@ export default function TheArcticIsNotAShortcutPage() {
           </ul>
         </section>
 
-        <nav
-          aria-label="Continue reading"
-          className="mt-12 grid gap-3 border-t border-rule pt-6 sm:grid-cols-2"
-        >
-          <Link
-            href="/archive?view=relationships&inquiry=the-arctic-is-not-a-shortcut"
-            className="border border-ink bg-ink px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-paper hover:border-signal hover:bg-signal"
-          >
-            Explore its source relationships
-          </Link>
-          <Link
-            href="/notebook/routing-around-risk"
-            className="border border-rule px-4 py-3 text-center font-mono text-xs uppercase tracking-widest text-ink-muted hover:border-jade hover:text-ink"
-          >
-            Read corrected Inquiry 04
-          </Link>
-        </nav>
+        <NotebookEndNavigation slug={entry.slug} />
       </NotebookReaderShell>
     </article>
   );
