@@ -2,7 +2,7 @@
   "name": "mainland-dispatch",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "npm@12.0.2+sha224.4c4977784242293bf5a4f80d28aab2d001ba8a7a4532285591a158aa",
+  "packageManager": "npm@12.2.0+sha512.66c2632a94e796649738b2d7894d710c2cc2e1696893823066687f6b0d8a52e5f2b54eeaeaa32ffdc513ecca1e49ff794a5c2ec3f9515d879f1b3182b291cf35",
   "devEngines": {
     "runtime": {
       "name": "node",
@@ -11,7 +11,7 @@
     },
     "packageManager": {
       "name": "npm",
-      "version": "12.0.2",
+      "version": "12.2.0",
       "onFail": "warn"
     }
   },
@@ -50,32 +50,32 @@
   "dependencies": {
     "@xstate/react": "6.1.0",
     "clsx": "2.1.1",
-    "maplibre-gl": "6.4.1",
-    "next": "16.3.3",
-    "postcss": "8.5.26",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "tailwind-merge": "3.6.0",
-    "xstate": "5.32.5",
-    "zod": "4.4.3"
+    "maplibre-gl": "6.13.0",
+    "next": "16.4.0",
+    "postcss": "8.5.29",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwind-merge": "3.7.0",
+    "xstate": "5.33.2",
+    "zod": "4.6.5"
   },
   "devDependencies": {
-    "@eslint/compat": "2.1.0",
+    "@eslint/compat": "2.1.1",
     "@tailwindcss/postcss": "4.3.3",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@types/jest": "30.0.0",
-    "@types/node": "22.20.1",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "@typescript/native": "npm:typescript@7.0.2",
-    "eslint": "10.9.1",
-    "eslint-config-next": "16.3.3",
+    "eslint": "10.12.0",
+    "eslint-config-next": "16.4.0",
     "husky": "9.1.7",
-    "jest": "30.5.0",
-    "jest-environment-jsdom": "30.5.0",
-    "lint-staged": "17.4.1",
-    "prettier": "3.9.6",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
+    "lint-staged": "17.6.0",
+    "prettier": "3.9.10",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"
   },
